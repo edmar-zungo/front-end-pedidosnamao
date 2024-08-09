@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap'
+import { MesaCreateComponent } from '../mesa-create/mesa-create.component';
 
 @Component({
   selector: 'app-mesa-list',
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './mesa-list.component.css'
 })
 export class MesaListComponent {
+	private modalService = inject(NgbModal);
 
+  openCresteMesaModal() {
+		const modalRef = this.modalService.open(MesaCreateComponent, { size: 'lg' });
+	}
 }
