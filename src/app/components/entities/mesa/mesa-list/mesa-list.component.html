@@ -14,133 +14,43 @@
 
   <div>
     <div class="row mb-3">
-      <div class="col">
-        <div class="card">
-          <img
-            src="../../../../../assets/images/full-table.png"
-            class="card-img-top"
-            alt="Imagem"
-          />
-          <div class="card-body">
-            <h5 class="card-title">MS/2</h5>
-
-            <li class="card-tex">Lugares: 4</li>
-            <li class="card-tex">Descrição: Mesa 2 com 4 lugares</li>
-            <li class="card-tex mb-3">Estado: Disponível</li>
-            <div>
-              <button
-                type="button"
-                class="btn btn-warning btn-sm rounded-start"
-              >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-              </button>
-
-              <button
-                type="button"
-                class="btn btn-info btn-sm ms-1 rounded-end"
-              >
-                <i class="fa fa-edit" aria-hidden="true"></i>
-              </button>
+      @for (mesa of mesaService.mesas(); track $index) {
+        <div style="width: 20rem;" class="mb-3">
+          <div class="card">
+            <img
+              src="../../../../../assets/images/full-table.png"
+              class="card-img-top"
+              alt="Imagem"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{mesa.numero}}</h5>
+  
+              <li class="card-tex">Lugares: {{mesa.quantidadeLugares}}</li>
+              <li class="card-tex">Descrição: {{mesa.descricao}}</li>
+              <li class="card-tex mb-3">Estado: {{mesa.estadoMesa}}</li>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-warning btn-sm rounded-start"
+                >
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
+  
+                <button
+                  type="button"
+                  class="btn btn-info btn-sm ms-1 rounded-end"
+                >
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img
-            src="../../../../../assets/images/full-table.png"
-            class="card-img-top"
-            alt="Imagem"
-          />
-          <div class="card-body">
-            <h5 class="card-title">MS/2</h5>
-
-            <li class="card-tex">Lugares: 4</li>
-            <li class="card-tex">Descrição: Mesa 2 com 4 lugares</li>
-            <li class="card-tex mb-3">Estado: Disponível</li>
-
-            <div>
-              <button
-                type="button"
-                class="btn btn-warning btn-sm rounded-start"
-              >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-              </button>
-
-              <button
-                type="button"
-                class="btn btn-info btn-sm ms-1 rounded-end"
-              >
-                <i class="fa fa-edit" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
+      } @empty {
+        <div class="alert alert-primary" role="alert">
+          Nenhuma mesa cadastrada. Adicione mesas clicando no botão "Nova".
         </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img
-            src="../../../../../assets/images/full-table.png"
-            class="card-img-top"
-            alt="Imagem"
-          />
-          <div class="card-body">
-            <h5 class="card-title">MS/2</h5>
-
-            <li class="card-tex">Lugares: 4</li>
-            <li class="card-tex">Descrição: Mesa 2 com 4 lugares</li>
-            <li class="card-tex mb-3">Estado: Disponível</li>
-
-            <div>
-              <button
-                type="button"
-                class="btn btn-warning btn-sm rounded-start"
-              >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-              </button>
-
-              <button
-                type="button"
-                class="btn btn-info btn-sm ms-1 rounded-end"
-              >
-                <i class="fa fa-edit" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img
-            src="../../../../../assets/images/full-table.png"
-            class="card-img-top"
-            alt="Imagem"
-          />
-          <div class="card-body">
-            <h5 class="card-title">MS/2</h5>
-
-            <li class="card-tex">Lugares: 4</li>
-            <li class="card-tex">Descrição: Mesa 2 com 4 lugares</li>
-            <li class="card-tex mb-3">Estado: Disponível</li>
-
-            <div>
-              <button
-                type="button"
-                class="btn btn-warning btn-sm rounded-start"
-              >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-              </button>
-
-              <button
-                type="button"
-                class="btn btn-info btn-sm ms-1 rounded-end"
-              >
-                <i class="fa fa-edit" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      }
     </div>
   </div>
 </div>

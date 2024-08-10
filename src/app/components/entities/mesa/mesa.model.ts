@@ -5,6 +5,6 @@ export interface MesaModel {
      numero: string;
      sequencia: number;
      quantidadeLugares: number;
-     estadoMesa: Estado;
+     estadoMesa: Estado | null;
      descricao: string;
 }

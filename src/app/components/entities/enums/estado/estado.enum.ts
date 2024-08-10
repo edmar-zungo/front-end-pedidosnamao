@@ -1,6 +1,6 @@
 export enum Estado {
-     DISPONIVEL = 'Disponível',
-     INDISPONIVEL = 'Indisponível',
-     RESERVADO = 'Reservado',
-     EM_FALTA = 'Em Falta'
+     DISPONIVEL = 'DISPONIVEL',
+     INDISPONIVEL = 'INDISPONIVEL',
+     RESERVADO = 'RESERVADO',
+     EM_FALTA = 'EM_FALTA'
 }

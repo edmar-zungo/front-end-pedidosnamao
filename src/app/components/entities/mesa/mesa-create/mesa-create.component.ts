@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Estado } from '../../enums/estado/estado.enum';
 import { MesaModel } from '../mesa.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MesaService } from '../mesa.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mesa-create',
@@ -18,6 +20,8 @@ export class MesaCreateComponent implements OnInit {
   estados = Object.keys(Estado);
 
   activeModal = inject(NgbModal);
+  mesaService = inject(MesaService);
+  router = inject(Router);
 
   ngOnInit(): void {
     this.criaFormulario();
@@ -28,7 +32,9 @@ export class MesaCreateComponent implements OnInit {
 
   criaFormulario() {
     this.mesaForm = new FormGroup({
+      id: new FormControl(),
       numero: new FormControl('', [Validators.required]),
+      sequencia: new FormControl(),
       quantidadeLugares: new FormControl('', [Validators.required, Validators.min(1)]),
       estadoMesa: new FormControl(),
       descricao: new FormControl('')
@@ -37,9 +43,12 @@ export class MesaCreateComponent implements OnInit {
 
   onSave() {
     this.mesa = this.mesaForm.value;
-
-    console.log(JSON.stringify(this.mesa));
-    this.cancel();
+    this.mesaService.saveMesa(this.mesa!).subscribe(() => {
+      this.mesaService.getMesas();
+      this.router.navigate(['/mesas']);
+      this.cancel();
+    });
+ 
   }
 
   cancel(){
