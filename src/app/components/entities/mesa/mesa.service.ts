@@ -32,4 +32,8 @@ export class MesaService {
   updateMesa(mesa: MesaModel): Observable<MesaModel>{
     return this.http.put<MesaModel>(`${this.urlApi}/${mesa.id}`, mesa);
   }
+
+  deleteMesa(mesaId: string): Observable<string>{
+   return this.http.delete<string>(`${this.urlApi}/${mesaId}`);
+  }
 }

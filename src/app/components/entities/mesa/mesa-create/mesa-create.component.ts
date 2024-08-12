@@ -24,10 +24,10 @@ export class MesaCreateComponent implements OnInit {
   router = inject(Router);
 
   ngOnInit(): void {
-    
+
     this.criaFormulario();
 
-    if(this.mesa != null){
+    if (this.mesa != null) {
       this.preencheFormularioActualizacao(this.mesa);
     }
   }
@@ -43,7 +43,7 @@ export class MesaCreateComponent implements OnInit {
     });
   }
 
-  preencheFormularioActualizacao(mesa: MesaModel){
+  preencheFormularioActualizacao(mesa: MesaModel) {
     this.mesaForm.patchValue({
       id: mesa.id,
       numero: mesa.numero,
@@ -56,24 +56,23 @@ export class MesaCreateComponent implements OnInit {
 
   onSave() {
     this.mesa = this.mesaForm.value;
-    if(this.mesa?.id != null){
+    if (this.mesa?.id != null) {
       this.mesaService.updateMesa(this.mesa).subscribe(() => {
         this.mesaService.getMesas();
-        this.router.navigate(['/mesas']);
-        this.cancel();
       });
 
     } else {
       this.mesaService.saveMesa(this.mesa!).subscribe(() => {
         this.mesaService.getMesas();
-        this.router.navigate(['/mesas']);
-        this.cancel();
+
       });
     }
- 
+
+    this.cancel();
+
   }
 
-  cancel(){
+  cancel() {
     this.activeModal.dismissAll();
   }
 

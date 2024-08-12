@@ -3,6 +3,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap'
 import { MesaCreateComponent } from '../mesa-create/mesa-create.component';
 import { MesaModel } from '../mesa.model';
 import { MesaService } from '../mesa.service';
+import { MesaDeleteComponent } from '../mesa-delete/mesa-delete.component';
 
 @Component({
   selector: 'app-mesa-list',
@@ -23,8 +24,14 @@ export class MesaListComponent implements OnInit{
   openCresteMesaModal() {
 		const modalRef = this.modalService.open(MesaCreateComponent, { size: 'lg' });
 	}
+  
   openUpdateMesaModal(mesa: MesaModel) {
 		const modalRef = this.modalService.open(MesaCreateComponent, { size: 'lg' });
+    modalRef.componentInstance.mesa = mesa;
+	}
+
+  openDeleteMesaModal(mesa: MesaModel) {
+		const modalRef = this.modalService.open(MesaDeleteComponent, { size: 'lg' });
     modalRef.componentInstance.mesa = mesa;
 	}
 
@@ -33,6 +40,14 @@ export class MesaListComponent implements OnInit{
       let mesaToUpdate = mesaResult;
 
       this.openUpdateMesaModal(mesaToUpdate);
+    });
+  }
+
+  deleteMesa(mesaId: string){
+    this.mesaService.getOneMesa(mesaId).subscribe(mesaResult => {
+      let mesaToDelete = mesaResult;
+
+      this.openDeleteMesaModal(mesaToDelete);
     });
   }
 }
