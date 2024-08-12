@@ -23,8 +23,16 @@ export class MesaListComponent implements OnInit{
   openCresteMesaModal() {
 		const modalRef = this.modalService.open(MesaCreateComponent, { size: 'lg' });
 	}
+  openUpdateMesaModal(mesa: MesaModel) {
+		const modalRef = this.modalService.open(MesaCreateComponent, { size: 'lg' });
+    modalRef.componentInstance.mesa = mesa;
+	}
 
+  updateMesa(mesaId: string){
+    this.mesaService.getOneMesa(mesaId).subscribe(mesaResult => {
+      let mesaToUpdate = mesaResult;
 
-
-
+      this.openUpdateMesaModal(mesaToUpdate);
+    });
+  }
 }

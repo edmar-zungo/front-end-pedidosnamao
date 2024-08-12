@@ -1,32 +1,36 @@
 <div class="modal-header">
-  <h4 class="modal-title">Criar mesa</h4>
+  @if(mesa?.id != null){
+    <h4 class="modal-title">Editar mesa</h4>
+  } @else {
+    <h4 class="modal-title">Criar mesa</h4>
+  }
 </div>
 <div class="modal-body">
   <form [formGroup]="mesaForm" (ngSubmit)="onSave()">
+    @if(mesa?.id != null){
+      <div class="row mb-3">
+        <div class="col-md-9 col-sm-12">
+          <label for="id" class="form-label">Id</label>
+          <input type="text" class="form-control" id="id" formControlName="id" readonly/>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <label for="sequencia" class="form-label">Sequencia</label>
+          <input type="text" class="form-control" id="sequencia" formControlName="sequencia" readonly/>
+        </div>
+      </div>
+    }
     <div class="row">
       <div class="col">
         <label for="numero" class="form-label">Número da mesa</label>
         <div class="input-group">
           <span class="input-group-text" id="basic-addon1">MS/</span>
-          <input
-            type="text"
-            class="form-control"
-            aria-label="numero"
-            aria-describedby="basic-addon1"
-            formControlName="numero"
-          />
+          <input type="text" class="form-control" aria-label="numero" aria-describedby="basic-addon1"
+            formControlName="numero" />
         </div>
       </div>
       <div class="col">
-        <label for="quantidadeLugares" class="form-label"
-          >Quantidade de lugares</label
-        >
-        <input
-          type="number"
-          class="form-control"
-          id="quantidadeLugares"
-          formControlName="quantidadeLugares"
-        />
+        <label for="quantidadeLugares" class="form-label">Quantidade de lugares</label>
+        <input type="number" class="form-control" id="quantidadeLugares" formControlName="quantidadeLugares" />
       </div>
       <div class="col">
         <label class="form-label" for="estado">Estado da mesa</label>
@@ -39,12 +43,7 @@
     </div>
     <div class="mb-3">
       <label for="descricao" class="form-label">Descrição</label>
-      <textarea
-        class="form-control"
-        id="descricao"
-        rows="3"
-        formControlName="descricao"
-      ></textarea>
+      <textarea class="form-control" id="descricao" rows="3" formControlName="descricao"></textarea>
     </div>
 
     <div class="float-end mb-3">
@@ -52,11 +51,7 @@
         <i class="fa fa-times" aria-hidden="true"></i>
         Cancelar
       </button>
-      <button
-        type="submit"
-        class="btn btn-warning"
-        [disabled]="this.mesaForm.invalid"
-      >
+      <button type="submit" class="btn btn-warning" [disabled]="this.mesaForm.invalid">
         <i class="fa fa-save" aria-hidden="true"></i>
         Salvar
       </button>

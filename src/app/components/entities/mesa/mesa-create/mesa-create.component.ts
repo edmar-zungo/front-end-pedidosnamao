@@ -24,10 +24,12 @@ export class MesaCreateComponent implements OnInit {
   router = inject(Router);
 
   ngOnInit(): void {
+    
     this.criaFormulario();
-    this.mesaForm.patchValue({
-      estadoMesa: Estado.DISPONIVEL
-    })
+
+    if(this.mesa != null){
+      this.preencheFormularioActualizacao(this.mesa);
+    }
   }
 
   criaFormulario() {
@@ -36,18 +38,38 @@ export class MesaCreateComponent implements OnInit {
       numero: new FormControl('', [Validators.required]),
       sequencia: new FormControl(),
       quantidadeLugares: new FormControl('', [Validators.required, Validators.min(1)]),
-      estadoMesa: new FormControl(),
+      estadoMesa: new FormControl(Estado.DISPONIVEL),
       descricao: new FormControl('')
     });
   }
 
+  preencheFormularioActualizacao(mesa: MesaModel){
+    this.mesaForm.patchValue({
+      id: mesa.id,
+      numero: mesa.numero,
+      sequencia: mesa.sequencia,
+      quantidadeLugares: mesa.quantidadeLugares,
+      estadoMesa: mesa.estadoMesa,
+      descricao: mesa.descricao
+    })
+  }
+
   onSave() {
     this.mesa = this.mesaForm.value;
-    this.mesaService.saveMesa(this.mesa!).subscribe(() => {
-      this.mesaService.getMesas();
-      this.router.navigate(['/mesas']);
-      this.cancel();
-    });
+    if(this.mesa?.id != null){
+      this.mesaService.updateMesa(this.mesa).subscribe(() => {
+        this.mesaService.getMesas();
+        this.router.navigate(['/mesas']);
+        this.cancel();
+      });
+
+    } else {
+      this.mesaService.saveMesa(this.mesa!).subscribe(() => {
+        this.mesaService.getMesas();
+        this.router.navigate(['/mesas']);
+        this.cancel();
+      });
+    }
  
   }
 

@@ -24,4 +24,12 @@ export class MesaService {
   saveMesa(mesa: MesaModel): Observable<MesaModel>{
     return this.http.post<MesaModel>(this.urlApi, mesa);
   }
+
+  getOneMesa(mesaId: string): Observable<MesaModel>{
+    return this.http.get<MesaModel>(`${this.urlApi}/${mesaId}`);
+  }
+
+  updateMesa(mesa: MesaModel): Observable<MesaModel>{
+    return this.http.put<MesaModel>(`${this.urlApi}/${mesa.id}`, mesa);
+  }
 }
