@@ -1,0 +1,53 @@
+<div class="container mt-4 mb-4">
+  <h2 class="text-center fs-1">Cardápios</h2>
+
+  <div class="mb-3 d-flex">
+    <button type="button" class="btn btn-warning" (click)="openCreateCardapioModal()">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      Novo
+    </button>
+
+    <button type="button" class="btn btn-info ms-2 me-4" (click)="this.cardapioService.getCardapios()">
+      <i class="fa fa-refresh" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div>
+    <div class="row mb-3">
+      @for (cardapio of cardapioService.cardapios(); track $index) {
+      <div style="max-width: 35rem;" class="mb-3">
+        <div class="card">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="../../../../../assets/images/list-menu.png" class="img-fluid rounded-start"
+                alt="Imagem default para o cardápio"
+                style="height: 11em;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ cardapio.descricao }}</h5>
+                <p class="card-text mb-5">{{ cardapio.tipoCardapio }}</p>
+  
+                <div>
+                  <a href="#" class="btn btn-primary btn-sm rounded-start"><i class="fa fa-eye"
+                      aria-hidden="true"></i></a>
+                  <button type="button" class="btn btn-info btn-sm ms-1 me-1"><i class="fa fa-edit"
+                      aria-hidden="true" (click)="updateCardapio(cardapio.id!)"></i></button>
+                  <button type="button" class="btn btn-danger btn-sm rounded-end" (click)="deleteCardapio(cardapio.id!)"><i class="fa fa-trash"
+                      aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-warning btn-sm float-end"> <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+                    item</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      } @empty {
+      <div class="alert alert-primary" role="alert">
+        Nenhum Cardápio cadastrado. Adicione cardápios clicando no botão "Novo".
+      </div>
+      }
+    </div>
+  </div>
+</div>

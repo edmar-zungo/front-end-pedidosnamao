@@ -1,13 +1,13 @@
 <div class="container mt-4 mb-4">
   <h2 class="text-center fs-1">Mesas</h2>
 
-  <div class="mb-3 d-flex justify-content-end">
+  <div class="mb-3 d-flex">
     <button type="button" class="btn btn-warning" (click)="openCresteMesaModal()">
       <i class="fa fa-plus" aria-hidden="true"></i>
       Nova
     </button>
 
-    <button type="button" class="btn btn-info ms-2">
+    <button type="button" class="btn btn-info ms-2" (click)="this.mesaService.getMesas()">
       <i class="fa fa-refresh" aria-hidden="true"></i>
     </button>
   </div>

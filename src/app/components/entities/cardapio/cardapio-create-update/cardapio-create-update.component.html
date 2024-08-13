@@ -1,0 +1,45 @@
+<div class="modal-header">
+     @if(cardapio?.id != null){
+       <h4 class="modal-title">Editar cardápio</h4>
+     } @else {
+       <h4 class="modal-title">Criar cardápio</h4>
+     }
+   </div>
+   <div class="modal-body">
+     <form [formGroup]="cardapioForm" (ngSubmit)="onSave()">
+       @if(cardapio?.id != null){
+         <div class="row mb-3">
+           <div class="col-md-9 col-sm-12">
+             <label for="id" class="form-label">Id</label>
+             <input type="text" class="form-control" id="id" formControlName="id" readonly/>
+           </div>
+         </div>
+       }
+       <div class="row mb-3">
+         <div class="col">
+           <label for="descricao" class="form-label">Descrição</label>
+          
+             <input type="text" class="form-control" aria-label="descricao" formControlName="descricao" />
+         </div>
+         <div class="col">
+           <label class="form-label" for="tipoCardapio">Tipo de Cardápio</label>
+           <select class="form-select" id="tipoCardapio" formControlName="tipoCardapio">
+             @for (tipoCardapio of tiposCardapio; track $index) {
+             <option [value]="tipoCardapio">{{ tipoCardapio }}</option>
+             }
+           </select>
+         </div>
+       </div>
+   
+       <div class="float-end mb-3">
+         <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
+           <i class="fa fa-times" aria-hidden="true"></i>
+           Cancelar
+         </button>
+         <button type="submit" class="btn btn-warning" [disabled]="this.cardapioForm.invalid">
+           <i class="fa fa-save" aria-hidden="true"></i>
+           Salvar
+         </button>
+       </div>
+     </form>
+   </div>

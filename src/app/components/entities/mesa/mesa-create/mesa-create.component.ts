@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Estado } from '../../enums/estado/estado.enum';
+import { Estado } from '../../enums/estado.enum';
 import { MesaModel } from '../mesa.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MesaService } from '../mesa.service';

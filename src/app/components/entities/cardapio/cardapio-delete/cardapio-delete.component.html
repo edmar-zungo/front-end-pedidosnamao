@@ -1,0 +1,19 @@
+<div class="modal-header">
+     <h4 class="modal-title">Eliminar cardapio</h4>
+   </div>
+   
+   <div class="modal-body">
+     <p>Tem certeza que deseja eliminar o cardápio: {{ cardapio?.descricao }} ?</p>
+   </div>
+   
+   <div class="float-end mb-3 me-3">
+     <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
+       <i class="fa fa-times" aria-hidden="true"></i>
+       Cancelar
+     </button>
+     <button type="submit" class="btn btn-danger" (click)="eliminar(cardapio?.id!)">
+       <i class="fa fa-trash" aria-hidden="true"></i>
+       Eliminar
+     </button>
+   </div>
+   
