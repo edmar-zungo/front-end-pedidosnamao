@@ -4,11 +4,12 @@ import { CardapioService } from '../cardapio.service';
 import { CardapioCreateUpdateComponent } from '../cardapio-create-update/cardapio-create-update.component';
 import { CardapioModel } from '../cardapio.model';
 import { CardapioDeleteComponent } from '../cardapio-delete/cardapio-delete.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cardapio-list',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './cardapio-list.component.html',
   styleUrl: './cardapio-list.component.css'
 })

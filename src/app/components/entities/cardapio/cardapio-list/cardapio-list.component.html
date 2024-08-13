@@ -29,7 +29,7 @@
                 <p class="card-text mb-5">{{ cardapio.tipoCardapio }}</p>
   
                 <div>
-                  <a href="#" class="btn btn-primary btn-sm rounded-start"><i class="fa fa-eye"
+                  <a [routerLink]="['/cardapios', cardapio.id]" class="btn btn-primary btn-sm rounded-start"><i class="fa fa-eye"
                       aria-hidden="true"></i></a>
                   <button type="button" class="btn btn-info btn-sm ms-1 me-1"><i class="fa fa-edit"
                       aria-hidden="true" (click)="updateCardapio(cardapio.id!)"></i></button>
