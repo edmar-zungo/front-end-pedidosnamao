@@ -1,3 +1,10 @@
-<div class="container">
-     <p>{{ cardapio?.descricao }}</p>
+<div class="container mt-4 mb-4">
+
+     <h2 class="text-center fs-3">Cardápio: {{ cardapio?.descricao }} - {{ cardapio?.tipoCardapio }}</h2>
+
+     <div>
+          <h3 class="fs-3">Itens</h3>
+          <app-item-consumo-list />
+     </div>
+    
 </div>

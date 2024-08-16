@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CardapioService } from '../cardapio.service';
 import { CardapioModel } from '../cardapio.model';
+import { ItemConsumoListComponent } from '../../item-consumo/item-consumo-list/item-consumo-list.component';
 
 @Component({
   selector: 'app-cardapio-detail',
   standalone: true,
-  imports: [],
+  imports: [ItemConsumoListComponent],
   templateUrl: './cardapio-detail.component.html',
   styleUrl: './cardapio-detail.component.css'
 })

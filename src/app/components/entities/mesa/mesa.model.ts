@@ -3,8 +3,8 @@ import { Estado } from "../enums/estado.enum";
 export interface MesaModel {
      id?: string | null;
      numero: string;
-     sequencia: number;
-     quantidadeLugares: number;
+     sequencia: number | null;
+     quantidadeLugares: number | null;
      estadoMesa: Estado | null;
-     descricao: string;
+     descricao: string | null;
 }
