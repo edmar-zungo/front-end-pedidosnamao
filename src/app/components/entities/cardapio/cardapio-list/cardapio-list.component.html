@@ -15,28 +15,39 @@
   <div>
     <div class="row mb-3">
       @for (cardapio of cardapioService.cardapios(); track $index) {
-      <div style="max-width: 41rem;" class="mb-3">
+      <div style="max-width: 41rem" class="mb-3">
         <div class="card">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="../../../../../assets/images/list-menu.png" class="img-fluid rounded-start"
-                alt="Imagem default para o cardápio"
-                style="height: 11em; width: 100%;">
+              @if(cardapio.tipoCardapio === 'COMIDA'){
+              <img src="{{ imagemCardapioComida }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
+                style="height: 11em; width: 100%" />
+              } @else if(cardapio.tipoCardapio === 'BEBIDA'){
+              <img src="{{ imagemCardapioBebida }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
+                style="height: 11em; width: 100%" />
+              } @else {
+              <img src="{{ imagemCardapioUnico }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
+                style="height: 11em; width: 100%" />
+              }
             </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">{{ cardapio.descricao }}</h5>
                 <p class="card-text mb-5">{{ cardapio.tipoCardapio }}</p>
-  
+
                 <div>
-                  <a [routerLink]="['/cardapios', cardapio.id]" class="btn btn-primary btn-sm rounded-start"><i class="fa fa-eye"
-                      aria-hidden="true"></i></a>
-                  <button type="button" class="btn btn-info btn-sm ms-1 me-1"><i class="fa fa-edit"
-                      aria-hidden="true" (click)="updateCardapio(cardapio.id!)"></i></button>
-                  <button type="button" class="btn btn-danger btn-sm rounded-end" (click)="deleteCardapio(cardapio.id!)"><i class="fa fa-trash"
-                      aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-warning btn-sm float-end"> <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
-                    item</button>
+                  <a [routerLink]="['/cardapios', cardapio.id]" class="btn btn-primary btn-sm rounded-start"><i
+                      class="fa fa-eye" aria-hidden="true"></i></a>
+                  <button type="button" class="btn btn-info btn-sm ms-1 me-1">
+                    <i class="fa fa-edit" aria-hidden="true" (click)="updateCardapio(cardapio.id!)"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm rounded-end"
+                    (click)="deleteCardapio(cardapio.id!)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm float-end">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Adicionar item
+                  </button>
                 </div>
               </div>
             </div>

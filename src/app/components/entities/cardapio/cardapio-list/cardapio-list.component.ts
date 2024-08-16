@@ -13,30 +13,35 @@ import { RouterLink } from '@angular/router';
   templateUrl: './cardapio-list.component.html',
   styleUrl: './cardapio-list.component.css'
 })
-export class CardapioListComponent implements OnInit{
-  
+export class CardapioListComponent implements OnInit {
+
+
+  imagemCardapioComida = '../../../../../assets/images/board-3200054_1280.jpg';
+  imagemCardapioBebida = '../../../../../assets/images/menu.jpg';
+  imagemCardapioUnico = '../../../../../assets/images/list-menu.png';
+
   protected modalService = inject(NgbModal);
-	constructor(public cardapioService: CardapioService){}
+  constructor(public cardapioService: CardapioService) { }
 
   ngOnInit(): void {
     this.cardapioService.getCardapios();
   }
 
   openCreateCardapioModal() {
-		const modalRef = this.modalService.open(CardapioCreateUpdateComponent, { size: 'lg' });
-	}
-  
+    const modalRef = this.modalService.open(CardapioCreateUpdateComponent, { size: 'lg' });
+  }
+
   openUpdateCardapioModal(cardapio: CardapioModel) {
-		const modalRef = this.modalService.open(CardapioCreateUpdateComponent, { size: 'lg' });
+    const modalRef = this.modalService.open(CardapioCreateUpdateComponent, { size: 'lg' });
     modalRef.componentInstance.cardapio = cardapio;
-	}
+  }
 
   openDeleteCardapioModal(cardapio: CardapioModel) {
-		const modalRef = this.modalService.open(CardapioDeleteComponent, { size: 'lg' });
+    const modalRef = this.modalService.open(CardapioDeleteComponent, { size: 'lg' });
     modalRef.componentInstance.cardapio = cardapio;
-	}
+  }
 
-  updateCardapio(cardapioId: string){
+  updateCardapio(cardapioId: string) {
     this.cardapioService.getOneCardapio(cardapioId).subscribe(cardapioResult => {
       let cardapioToUpdate = cardapioResult;
 
@@ -44,7 +49,7 @@ export class CardapioListComponent implements OnInit{
     });
   }
 
-  deleteCardapio(cardapioId: string){
+  deleteCardapio(cardapioId: string) {
     this.cardapioService.getOneCardapio(cardapioId).subscribe(cardapioResult => {
       let cardapioToDelete = cardapioResult;
 

@@ -1,1 +1,7 @@
-<p>item-consumo-list works!</p>
+@for (item of itemConsumoService.itensConsumo(); track $index) {
+  <p>{{item.descricao}}</p>
+} @empty {
+     <div class="alert alert-primary" role="alert">
+          Nenhum item de consumo cadastrado neste cardápio. Adicione itens clicando no botão "Novo".
+        </div> 
+}
