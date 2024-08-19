@@ -1,0 +1,40 @@
+<div class="modal-header">
+  @if(itemConsumo?.id != null){
+    <h4 class="modal-title">Editar Item de Consumo</h4>
+  } @else {
+    <h4 class="modal-title">Criar Item de Consumo</h4>
+  }
+</div>
+
+<div class="modal-body">
+     <form [formGroup]="itemConsumoForm" (ngSubmit)="onSave()">
+       @if(itemConsumo?.id != null){
+         <div class="row mb-3">
+           <div class="col-md-9 col-sm-12">
+             <label for="id" class="form-label">Id</label>
+             <input type="text" class="form-control" id="id" formControlName="id" readonly/>
+           </div>
+         </div>
+       }
+       
+       <div class="row mb-3">
+          <label for="imagem" formControlName="imagem" class="form-label">Imagem</label>
+          <input type="file" name="imagem" id="imagem" class="form-control">
+       </div>
+
+       <div class="row">
+          
+       </div>
+   
+       <div class="float-end mb-3">
+         <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
+           <i class="fa fa-times" aria-hidden="true"></i>
+           Cancelar
+         </button>
+         <button type="submit" class="btn btn-warning" [disabled]="this.itemConsumoForm.invalid">
+           <i class="fa fa-save" aria-hidden="true"></i>
+           Salvar
+         </button>
+       </div>
+     </form>
+   </div>

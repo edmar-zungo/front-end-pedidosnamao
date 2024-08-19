@@ -5,6 +5,7 @@ import { CardapioCreateUpdateComponent } from '../cardapio-create-update/cardapi
 import { CardapioModel } from '../cardapio.model';
 import { CardapioDeleteComponent } from '../cardapio-delete/cardapio-delete.component';
 import { RouterLink } from '@angular/router';
+import { ItemConsumoCreateUpdateComponent } from '../../item-consumo/item-consumo-create-update/item-consumo-create-update.component';
 
 @Component({
   selector: 'app-cardapio-list',
@@ -56,4 +57,8 @@ export class CardapioListComponent implements OnInit {
       this.openDeleteCardapioModal(cardapioToDelete);
     });
   }
+
+  openCreateItemConsumoModel() {
+		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
+	}
 }

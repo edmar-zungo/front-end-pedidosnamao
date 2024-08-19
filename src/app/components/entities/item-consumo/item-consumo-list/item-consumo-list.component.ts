@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ItemConsumoService } from '../item-consumo.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { ItemConsumoService } from '../item-consumo.service';
 })
 export class ItemConsumoListComponent implements OnInit{
 
+ 
   constructor(public itemConsumoService: ItemConsumoService){}
 
   ngOnInit(): void {
