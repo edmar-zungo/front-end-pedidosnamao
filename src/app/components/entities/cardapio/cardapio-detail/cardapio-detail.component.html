@@ -1,8 +1,11 @@
-<div class="col-7 content-center mt-4 mb-4 menu-list text-white active">
+<div class="col-7 content-center mt-4 mb-4 ">
+<div class="top-cardapio">
   <h2 class="text-center fs-3 mb-4">
     Cardápio: {{ cardapio?.descricao }} - {{ cardapio?.tipoCardapio }}
   </h2>
+</div>
 
-  <h3 class="text-center fs-3">Itens de consumo</h3>
+  <div class="menu-list text-white active">
   <app-item-consumo-list />
+  </div>
 </div>
