@@ -44,7 +44,7 @@ export class ItemConsumoCreateUpdateComponent {
   criaFormulario() {
     this.itemConsumoForm = new FormGroup({
       id: new FormControl(),
-      imagem: new FormControl(''),
+      imagem: new FormControl(),
       descricao: new FormControl(''),
       preco: new FormControl(Validators.required),
       tipoItemConsumo: new FormControl(''),
@@ -53,8 +53,8 @@ export class ItemConsumoCreateUpdateComponent {
       origem: new FormControl(''),
       dataActualizacao: new FormControl(this.dataActual),
       estadoItem: new FormControl(Estado.DISPONIVEL),
-      tipoPrato: new FormControl(''),
-      tipoBebida: new FormControl(''),
+      tipoPrato: new FormControl(null),
+      tipoBebida: new FormControl(null),
       cardapio: new FormControl(this.cardapio),
     });
   }
@@ -79,23 +79,18 @@ export class ItemConsumoCreateUpdateComponent {
 
   onSave() {
 
-
     this.itemConsumo = this.itemConsumoForm.value;
+    if (this.itemConsumo?.id != null) {
+      this.itemConsumoService.updateItemConsumo(this.itemConsumo).subscribe(() => {
+        this.itemConsumoService.getItensConsumo();
+      });
 
-    console.log(JSON.stringify(this.itemConsumo));
+    } else {
+      this.itemConsumoService.saveItenConsumo(this.itemConsumo!).subscribe(() => {
+        this.itemConsumoService.getItensConsumo();
 
-    // this.itemConsumo = this.itemConsumoForm.value;
-    // if (this.itemConsumo?.id != null) {
-    //   this.itemConsumoService.updateItemConsumo(this.itemConsumo).subscribe(() => {
-    //     this.itemConsumoService.getItensConsumo();
-    //   });
-
-    // } else {
-    //   this.itemConsumoService.saveItenConsumo(this.itemConsumo!).subscribe(() => {
-    //     this.itemConsumoService.getItensConsumo();
-
-    //   });
-    // }
+      });
+    }
 
     this.cancel();
 
@@ -103,6 +98,21 @@ export class ItemConsumoCreateUpdateComponent {
 
   cancel() {
     this.activeModal.dismissAll();
+  }
+
+  onFileChange(event: any) {
+    const file = (event.target as HTMLInputElement).files![0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const base64Image = reader.result as string;
+      this.itemConsumoForm.patchValue({
+        imagem: base64Image
+      });
+      this.itemConsumoForm.get('imagem')?.updateValueAndValidity();
+    }
+
   }
 
 }

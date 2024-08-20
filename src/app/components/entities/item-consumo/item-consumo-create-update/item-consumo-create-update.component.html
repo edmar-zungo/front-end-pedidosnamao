@@ -20,7 +20,7 @@
        <div class="row mb-3">
         <div class="col-8">
           <label for="imagem"  class="form-label">Imagem</label>
-          <input type="file" name="imagem" id="imagem" class="form-control" formControlName="imagem">
+          <input type="file" name="imagem" id="imagem" class="form-control"  (change)="onFileChange($event)">
         </div>
        </div>
 
