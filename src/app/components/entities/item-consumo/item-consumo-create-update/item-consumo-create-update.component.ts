@@ -108,7 +108,8 @@ export class ItemConsumoCreateUpdateComponent {
     reader.onload = () => {
       const base64Image = reader.result as string;
       this.itemConsumoForm.patchValue({
-        imagem: base64Image
+        imagem: base64Image.split(',')[1], // Remove o prefixo "data:image/png;base64,"
+        imagemContentType: file.type // Adiciona o tipo de conteúdo
       });
       this.itemConsumoForm.get('imagem')?.updateValueAndValidity();
     }

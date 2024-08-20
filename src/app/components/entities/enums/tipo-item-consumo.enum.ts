@@ -1,4 +1,4 @@
 export enum TipoItemConsumo {
-     COMIDA = 'COMIDA',
+     PRATO = 'PRATO',
      BEBIDA = 'BEBIDA'
 }

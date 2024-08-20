@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { ItemConsumoModel } from './item-consumo.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,7 +21,11 @@ export class ItemConsumoService {
   }
 
   saveItenConsumo(itemConsumo: ItemConsumoModel): Observable<ItemConsumoModel>{
-    return this.http.post<ItemConsumoModel>(this.urlApi, itemConsumo);
+    return this.http.post<ItemConsumoModel>(this.urlApi, itemConsumo, {
+      headers: new HttpHeaders({
+        'enctype': 'multipart/form-data'
+      })
+    });
   }
 
   getOneItemConsumo(itemConsumoId: string): Observable<ItemConsumoModel>{
