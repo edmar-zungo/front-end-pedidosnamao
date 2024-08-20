@@ -58,7 +58,8 @@ export class CardapioListComponent implements OnInit {
     });
   }
 
-  openCreateItemConsumoModel() {
+  openCreateItemConsumoModel(cadapio: CardapioModel) {
 		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
+    modalRef.componentInstance.cardapio = cadapio;
 	}
 }

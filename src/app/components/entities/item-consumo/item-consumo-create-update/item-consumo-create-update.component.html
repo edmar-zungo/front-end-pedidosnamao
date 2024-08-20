@@ -10,7 +10,7 @@
      <form [formGroup]="itemConsumoForm" (ngSubmit)="onSave()">
        @if(itemConsumo?.id != null){
          <div class="row mb-3">
-           <div class="col-md-9 col-sm-12">
+           <div class="col-md-9">
              <label for="id" class="form-label">Id</label>
              <input type="text" class="form-control" id="id" formControlName="id" readonly/>
            </div>
@@ -18,15 +18,77 @@
        }
        
        <div class="row mb-3">
-          <label for="imagem" formControlName="imagem" class="form-label">Imagem</label>
-          <input type="file" name="imagem" id="imagem" class="form-control">
+        <div class="col-8">
+          <label for="imagem"  class="form-label">Imagem</label>
+          <input type="file" name="imagem" id="imagem" class="form-control" formControlName="imagem">
+        </div>
+       </div>
+
+       <div class="row mb-3">
+        <div class="col-6">
+          <label for="descricao" class="form-label" >Descrição</label>
+          <input type="text" name="descricao" id="descricao" class="form-control" formControlName="descricao">
+        </div>
+        <div class="col-3">
+          <label for="tipoItemConsumo" class="form-label" >Tipo de item</label>
+          <select name="tipoItemConsumo" id="tipoItemConsumo" class="form-control" formControlName="tipoItemConsumo">
+            @if(!itemConsumoForm.get('tipoItemConsumo')?.value){
+              <option [value]="null" selected></option>
+            }
+            @for(tipoItemConsumo of tiposItemConsumo; track $index ){
+              <option [value]="tipoItemConsumo">{{ tipoItemConsumo }}</option>
+            }
+          </select>
+        </div>
+        <div class="col-3">
+
+          <label for="preco" class="form-label">Preço</label>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" name="preco" id="preco" formControlName="preco">
+            <span class="input-group-text">Kz</span>
+          </div>
+        </div>
        </div>
 
        <div class="row">
-          
+        @if(itemConsumoForm.get('tipoItemConsumo')?.value === 'COMIDA'){
+          <div class="col-3">
+            <label for="cozinha" class="form-label" >Cozinha</label>
+            <input type="text" name="cozinha" id="cozinha" class="form-control" formControlName="cozinha">
+          </div>
+          <div class="col-3">
+            <label for="tipoPrato" class="form-label" >Tipo de prato</label>
+            <select name="tipoPrato" id="tipoPrato" class="form-control" formControlName="tipoPrato">
+              @if(!itemConsumoForm.get('tipoPrato')?.value){
+                <option [value]="null" selected></option>
+              }
+              @for(tipoPrato of tiposPrato; track $index ){
+                <option [value]="tipoPrato">{{ tipoPrato }}</option>
+              }
+            </select>
+          </div>
+        }
+        @if (itemConsumoForm.get('tipoItemConsumo')?.value === 'BEBIDA') {
+          <div class="col-3">
+            <label for="origem" class="form-label" >Origem</label>
+            <input type="text" name="origem" id="origem" class="form-control" formControlName="origem">
+          </div>
+          <div class="col-3">
+            <label for="tipoBebida" class="form-label" >Tipo de bebida</label>
+            <select name="tipoBebida" id="tipoBebida" class="form-control" formControlName="tipoBebida">
+              @if(!itemConsumoForm.get('tipoBebida')?.value){
+                <option [value]="null" selected></option>
+              }
+              @for(tipoBebida of tiposBebida; track $index ){
+                <option [value]="tipoBebida">{{ tipoBebida }}</option>
+              }
+            </select>
+          </div>
+        }
+
        </div>
    
-       <div class="float-end mb-3">
+       <div class="float-end mb-3 mt-3">
          <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
            <i class="fa fa-times" aria-hidden="true"></i>
            Cancelar

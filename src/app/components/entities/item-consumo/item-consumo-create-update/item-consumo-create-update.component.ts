@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemConsumoService } from '../item-consumo.service';
 import { Router } from '@angular/router';
 import { TipoItemConsumo } from '../../enums/tipo-item-consumo.enum';
+import { CardapioModel } from '../../cardapio/cardapio.model';
 
 @Component({
   selector: 'app-item-consumo-create-update',
@@ -21,15 +22,18 @@ export class ItemConsumoCreateUpdateComponent {
   itemConsumoForm!: FormGroup;
   itemConsumo: ItemConsumoModel | null = null;
   estados = Object.keys(Estado);
-  tipoBebida = Object.keys(TipoBebida);
-  tipoPrato = Object.keys(TipoPrato);
+  tiposBebida = Object.keys(TipoBebida);
+  tiposPrato = Object.keys(TipoPrato);
+  tiposItemConsumo = Object.keys(TipoItemConsumo);
+  dataActual = new Date(Date.now());
+
+  cardapio: CardapioModel | null = null;
 
   activeModal = inject(NgbModal);
   itemConsumoService = inject(ItemConsumoService);
   router = inject(Router);
 
   ngOnInit(): void {
-
     this.criaFormulario();
 
     if (this.itemConsumo != null) {
@@ -40,18 +44,18 @@ export class ItemConsumoCreateUpdateComponent {
   criaFormulario() {
     this.itemConsumoForm = new FormGroup({
       id: new FormControl(),
-      imagem: new FormControl(null),
+      imagem: new FormControl(''),
       descricao: new FormControl(''),
       preco: new FormControl(Validators.required),
-      estadoItem: new FormControl(Estado.DISPONIVEL),
-      dataCriacao: new FormControl(),
+      tipoItemConsumo: new FormControl(''),
+      dataCriacao: new FormControl(this.dataActual),
       cozinha: new FormControl(''),
       origem: new FormControl(''),
-      dataActualizacao: new FormControl(),
-      tipoItemConsumo: new FormControl(TipoItemConsumo),
-      tipoPrato: new FormControl(),
-      tipoBebida: new FormControl(),
-      cardapio: new FormControl(),
+      dataActualizacao: new FormControl(this.dataActual),
+      estadoItem: new FormControl(Estado.DISPONIVEL),
+      tipoPrato: new FormControl(''),
+      tipoBebida: new FormControl(''),
+      cardapio: new FormControl(this.cardapio),
     });
   }
 
@@ -74,18 +78,24 @@ export class ItemConsumoCreateUpdateComponent {
   }
 
   onSave() {
+
+
     this.itemConsumo = this.itemConsumoForm.value;
-    if (this.itemConsumo?.id != null) {
-      this.itemConsumoService.updateItemConsumo(this.itemConsumo).subscribe(() => {
-        this.itemConsumoService.getItensConsumo();
-      });
 
-    } else {
-      this.itemConsumoService.saveItenConsumo(this.itemConsumo!).subscribe(() => {
-        this.itemConsumoService.getItensConsumo();
+    console.log(JSON.stringify(this.itemConsumo));
 
-      });
-    }
+    // this.itemConsumo = this.itemConsumoForm.value;
+    // if (this.itemConsumo?.id != null) {
+    //   this.itemConsumoService.updateItemConsumo(this.itemConsumo).subscribe(() => {
+    //     this.itemConsumoService.getItensConsumo();
+    //   });
+
+    // } else {
+    //   this.itemConsumoService.saveItenConsumo(this.itemConsumo!).subscribe(() => {
+    //     this.itemConsumoService.getItensConsumo();
+
+    //   });
+    // }
 
     this.cancel();
 
