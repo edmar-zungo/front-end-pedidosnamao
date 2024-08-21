@@ -1,5 +1,16 @@
+.tipo-item{
+     padding: .6rem;
+     background-color: #cf902f;
+     color: #ffffff;
+     font-weight: bolder;
+     font-size: large;
+     border-radius: .5rem;
+}
+
 a{
      list-style: none;
      text-decoration: none;
-     color: #ffffff;
+     color: #000000;
+     font-weight: bold;
 }
+
