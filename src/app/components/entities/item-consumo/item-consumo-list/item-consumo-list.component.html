@@ -3,7 +3,7 @@
     <div class="tipo-item mb-2">PRINCIPAL</div>
     @for (item of itemConsumoService.itensConsumo(); track $index) {
     @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL'){
-    <li class="list-group-item d-flex justify-content-between align-items-start border border-0 mb-2">
+    <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
       <div class="ms-2 me-auto">
         <div class="fw-bold">
           <a href="">{{ item.descricao }}</a>

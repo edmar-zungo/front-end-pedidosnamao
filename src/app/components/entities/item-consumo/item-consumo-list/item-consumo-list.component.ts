@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ItemConsumoService } from '../item-consumo.service';
 import { TipoItemConsumo } from '../../enums/tipo-item-consumo.enum';
 
