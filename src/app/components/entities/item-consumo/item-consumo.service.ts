@@ -20,6 +20,12 @@ export class ItemConsumoService {
     });
   }
 
+  getAllItensConsumoPorCardapio(cardapioId: string){
+    this.http.get<ItemConsumoModel[]>(`${this.urlApi}/by-cardapio/${cardapioId}`).subscribe(itensConsumoResult => {
+      this.itensConsumo.set(itensConsumoResult);
+    });
+  }
+
   saveItenConsumo(itemConsumo: ItemConsumoModel): Observable<ItemConsumoModel>{
     return this.http.post<ItemConsumoModel>(this.urlApi, itemConsumo, {
       headers: new HttpHeaders({
