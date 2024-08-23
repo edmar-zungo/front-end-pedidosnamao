@@ -83,11 +83,13 @@ export class ItemConsumoCreateUpdateComponent {
     if (this.itemConsumo?.id != null) {
       this.itemConsumoService.updateItemConsumo(this.itemConsumo).subscribe(() => {
         this.itemConsumoService.getAllItensConsumoPorCardapio(this.itemConsumo?.cardapio?.id!);
+        this.router.navigate(['/cardapios', this.itemConsumo?.cardapio?.id]);
       });
 
     } else {
       this.itemConsumoService.saveItenConsumo(this.itemConsumo!).subscribe(() => {
         this.itemConsumoService.getAllItensConsumoPorCardapio(this.itemConsumo?.cardapio?.id!);
+        this.router.navigate(['/cardapios', this.itemConsumo?.cardapio?.id]);
 
       });
     }

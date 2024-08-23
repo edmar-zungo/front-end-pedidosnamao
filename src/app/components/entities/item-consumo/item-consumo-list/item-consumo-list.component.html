@@ -54,7 +54,7 @@
     </ol>
    }
 
-   @if(existeBebida()){
+   @if(cardapioUnico()){
     <div class="sub-title text-center mb-3 fs-4">
       BEBIDAS
     </div>
@@ -96,4 +96,9 @@
       }
     </ol>
    }
+
+
+  <div class="d-flex justify-content-end mt-4">
+    <button type="button" class="novoItemButton p-1 rounded text-white" (click)="openCreateItemConsumoModel()"> <i class="fa fa-plus" aria-hidden="true"></i> Novo item</button>
+  </div>
 </div>

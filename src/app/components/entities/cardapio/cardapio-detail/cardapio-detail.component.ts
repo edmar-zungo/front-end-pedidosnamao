@@ -21,7 +21,6 @@ export class CardapioDetailComponent implements OnInit{
   activatedRoute = inject(ActivatedRoute);
   cardapioService = inject(CardapioService);
   itemConsumoService = inject(ItemConsumoService);
-  protected modalService = inject(NgbModal);
 
   ngOnInit(): void {
     this.carregaCardapioEItensConsumoCardapio();
@@ -34,11 +33,5 @@ export class CardapioDetailComponent implements OnInit{
       this.itemConsumoService.getAllItensConsumoPorCardapio(this.cardapio.id!);
     })
   }
-
-
-  openCreateItemConsumoModel(cadapio: CardapioModel) {
-		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
-    modalRef.componentInstance.cardapio = cadapio;
-	}
 
 }

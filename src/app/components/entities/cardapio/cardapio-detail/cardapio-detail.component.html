@@ -5,10 +5,8 @@
   </h2>
 </div>
 
-  <div class="menu-list text-white active d-flex flex-column">
+  <div class="menu-list text-white active">
   
-  <app-item-consumo-list/>
-
-  <button type="button" class="novoItemButton mt-4 p-1 ms-3 rounded text-white align-item-end" (click)="openCreateItemConsumoModel(cardapio!)"> <i class="fa fa-plus" aria-hidden="true"></i> Novo item</button>
+  <app-item-consumo-list [cardapio]="cardapio"/>
   </div>
 </div>

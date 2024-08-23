@@ -1,7 +1,9 @@
-import { Component, OnInit, input, signal } from '@angular/core';
+import { Component, OnInit, effect, inject, input, signal } from '@angular/core';
 import { ItemConsumoService } from '../item-consumo.service';
 import { RouterLink } from '@angular/router';
 import { CardapioModel } from '../../cardapio/cardapio.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ItemConsumoCreateUpdateComponent } from '../item-consumo-create-update/item-consumo-create-update.component';
 
 @Component({
   selector: 'app-item-consumo-list',
@@ -14,10 +16,14 @@ export class ItemConsumoListComponent implements OnInit {
 
   cardapio = input<CardapioModel | null>();
 
-  constructor(public itemConsumoService: ItemConsumoService) { }
+  modalService = inject(NgbModal)
+
+  constructor(public itemConsumoService: ItemConsumoService) {
+   
+   }
 
   ngOnInit(): void {
-    this.getAllItensConsumoPorCardapio();
+   
   }
 
   existePratosPrincipais(): boolean {
@@ -42,13 +48,13 @@ export class ItemConsumoListComponent implements OnInit {
     return true;
   }
 
-  existeBebida(): boolean {
-    const tamanhoFilter = this.itemConsumoService.itensConsumo().filter(x => x.tipoItemConsumo === 'BEBIDA').length;
-    if (tamanhoFilter === 0) {
-      return false;
-    }
-    return true;
-  }
+  // existeBebida(): boolean {
+  //   const tamanhoFilter = this.itemConsumoService.itensConsumo().filter(x => x.tipoItemConsumo === 'BEBIDA').length;
+  //   if (tamanhoFilter === 0) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
   existeBebidaAlcoolica(): boolean {
     const tamanhoFilter = this.itemConsumoService.itensConsumo().filter(x => x.tipoBebida === 'ALCOOLICA').length;
     if (tamanhoFilter === 0) {
@@ -63,9 +69,18 @@ export class ItemConsumoListComponent implements OnInit {
     }
     return true;
   }
-
-  getAllItensConsumoPorCardapio(){
-    
-    this.itemConsumoService.getAllItensConsumoPorCardapio(this.cardapio()?.id!);
+  cardapioUnico(): boolean {
+    const tamanhoFilter = this.itemConsumoService.itensConsumo().filter(x => x.tipoItemConsumo === 'BEBIDA' && x.cardapio?.tipoCardapio === 'UNICO').length;
+    if (tamanhoFilter === 0) {
+      return false;
+    }
+    return true;
   }
+
+  openCreateItemConsumoModel() {
+		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
+    modalRef.componentInstance.cardapio = this.cardapio();
+	}
+
+
 }
