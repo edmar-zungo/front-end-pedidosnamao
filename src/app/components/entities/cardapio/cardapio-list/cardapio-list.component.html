@@ -19,10 +19,10 @@
         <div class="card">
           <div class="row g-0">
             <div class="col-md-4">
-              @if(cardapio.tipoCardapio === 'COMIDA'){
+              @if(cardapio.tipoCardapio === 'PRATOS'){
               <img src="{{ imagemCardapioComida }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
                 style="height: 11em; width: 100%" />
-              } @else if(cardapio.tipoCardapio === 'BEBIDA'){
+              } @else if(cardapio.tipoCardapio === 'BEBIDAS'){
               <img src="{{ imagemCardapioBebida }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
                 style="height: 11em; width: 100%" />
               } @else {

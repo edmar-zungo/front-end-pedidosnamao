@@ -1,5 +1,5 @@
 export enum TipoCardapio {
-     COMIDA = 'COMIDA',
-     BEBIDA = 'BEBIDA',
+     PRATOS = 'PRATOS',
+     BEBIDAS = 'BEBIDAS',
      UNICO = 'UNICO'
 }
