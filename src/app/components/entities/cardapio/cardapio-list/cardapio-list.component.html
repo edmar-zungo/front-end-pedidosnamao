@@ -1,13 +1,13 @@
 <div class="container mt-4 mb-4">
   <h2 class="text-center fs-1">Cardápios</h2>
 
-  <div class="mb-3 d-flex">
+  <div class="mb-3 d-flex justify-content-end me-3">
     <button type="button" class="btn btn-warning" (click)="openCreateCardapioModal()">
       <i class="fa fa-plus" aria-hidden="true"></i>
       Novo
     </button>
 
-    <button type="button" class="btn btn-info ms-2 me-4" (click)="this.cardapioService.getCardapios()">
+    <button type="button" class="btn btn-info ms-2" (click)="this.cardapioService.getCardapios()">
       <i class="fa fa-refresh" aria-hidden="true"></i>
     </button>
   </div>
