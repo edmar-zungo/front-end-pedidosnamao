@@ -65,7 +65,7 @@ export class ItemConsumoListComponent implements OnInit {
   }
 
   getAllItensConsumoPorCardapio(){
-    alert(this.cardapio()?.id)
+    
     this.itemConsumoService.getAllItensConsumoPorCardapio(this.cardapio()?.id!);
   }
 }

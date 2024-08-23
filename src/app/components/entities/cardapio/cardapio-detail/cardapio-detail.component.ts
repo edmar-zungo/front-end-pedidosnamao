@@ -5,6 +5,7 @@ import { CardapioModel } from '../cardapio.model';
 import { ItemConsumoListComponent } from '../../item-consumo/item-consumo-list/item-consumo-list.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemConsumoCreateUpdateComponent } from '../../item-consumo/item-consumo-create-update/item-consumo-create-update.component';
+import { ItemConsumoService } from '../../item-consumo/item-consumo.service';
 
 @Component({
   selector: 'app-cardapio-detail',
@@ -19,6 +20,7 @@ export class CardapioDetailComponent implements OnInit{
 
   activatedRoute = inject(ActivatedRoute);
   cardapioService = inject(CardapioService);
+  itemConsumoService = inject(ItemConsumoService);
   protected modalService = inject(NgbModal);
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class CardapioDetailComponent implements OnInit{
     const cardapioId = this.activatedRoute.snapshot.params['cardapioId'];
     this.cardapioService.getOneCardapio(cardapioId).subscribe(cardapioResult => {
       this.cardapio = cardapioResult;
+      this.itemConsumoService.getAllItensConsumoPorCardapio(this.cardapio.id!);
     })
   }
 
