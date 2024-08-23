@@ -1,13 +1,13 @@
 <div class="container mt-4 mb-4">
-  <h2 class="text-center fs-1">Cardápios</h2>
+  <h2 class="text-center fs-1 header-color">Cardápios</h2>
 
   <div class="mb-3 d-flex justify-content-end me-3 ">
-    <button type="button" class="btn btn-warning text-white active" (click)="openCreateCardapioModal()">
+    <button type="button" class="btn btn-warning header-color fw-bold" (click)="openCreateCardapioModal()">
       <i class="fa fa-plus" aria-hidden="true"></i>
       Novo
     </button>
 
-    <button type="button" class="btn btn-info ms-2 text-white active" (click)="this.cardapioService.getCardapios()">
+    <button type="button" class="btn btn-info ms-2 header-color fw-bold" (click)="this.cardapioService.getCardapios()">
       <i class="fa fa-refresh" aria-hidden="true"></i>
     </button>
   </div>
@@ -32,8 +32,8 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">{{ cardapio.descricao }}</h5>
-                <p class="card-text mb-5">{{ cardapio.tipoCardapio }}</p>
+                <h5 class="card-title header-color">{{ cardapio.descricao }}</h5>
+                <p class="card-text mb-5 tipo-color">{{ cardapio.tipoCardapio }}</p>
 
                 <div>
                   <a [routerLink]="['/cardapios', cardapio.id]" class="btn btn-primary btn-sm rounded-start"><i
@@ -45,7 +45,7 @@
                     (click)="deleteCardapio(cardapio.id!)">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </button>
-                  <button type="button" class="btn btn-warning btn-sm p-1 fs-6 w-25 float-end text-white active" (click)="openCreateItemConsumoModel(cardapio)">
+                  <button type="button" class="btn btn-warning btn-sm p-1 fs-6 w-25 float-end header-color fw-bold" (click)="openCreateItemConsumoModel(cardapio)">
                     <i class="fa fa-plus" aria-hidden="true"></i> Item
                   </button>
                 </div>

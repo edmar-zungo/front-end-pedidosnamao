@@ -26,6 +26,13 @@ export class ItemConsumoListComponent implements OnInit {
    
   }
 
+  existeItens(): boolean {
+    const tamanhoFilter = this.itemConsumoService.itensConsumo().length;
+    if (tamanhoFilter === 0) {
+      return false;
+    }
+    return true;
+  }
   existePratosPrincipais(): boolean {
     const tamanhoFilter = this.itemConsumoService.itensConsumo().filter(x => x.tipoPrato === 'PRINCIPAL').length;
     if (tamanhoFilter === 0) {
@@ -81,6 +88,5 @@ export class ItemConsumoListComponent implements OnInit {
 		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
     modalRef.componentInstance.cardapio = this.cardapio();
 	}
-
 
 }

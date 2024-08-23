@@ -1,101 +1,105 @@
 <div class="container">
-  @if(existePratosPrincipais()){
-    <div class="tipo-item mb-2">PRINCIPAL</div>
-    <ol class="list-group list-group-numbered mb-3">
-      @for (item of itemConsumoService.itensConsumo(); track $index) {
-      @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL'){
-      <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">
-            <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+  @if(existeItens()){
+    @if(existePratosPrincipais()){
+      <div class="tipo-item mb-2">PRINCIPAL</div>
+      <ol class="list-group list-group-numbered mb-3">
+        @for (item of itemConsumoService.itensConsumo(); track $index) {
+        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL'){
+        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+            </div>
           </div>
-        </div>
-        <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-      </li>
-      }
-      }
-    </ol>
-   }
-
-   @if(existePratosEntrada()){
-    <div class="tipo-item mb-2">ENTRADA</div>
-    <ol class="list-group list-group-numbered mb-3">
-      @for (item of itemConsumoService.itensConsumo(); track $index) {
-      @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'ENTRADA'){
-      <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">
-            <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
+        </li>
+        }
+        }
+      </ol>
+     }
+  
+     @if(existePratosEntrada()){
+      <div class="tipo-item mb-2">ENTRADA</div>
+      <ol class="list-group list-group-numbered mb-3">
+        @for (item of itemConsumoService.itensConsumo(); track $index) {
+        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'ENTRADA'){
+        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+            </div>
           </div>
-        </div>
-        <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-      </li>
-      }
-      }
-    </ol>
-   }
-
-
-   @if(existePratosSobremesa()){
-    <div class="tipo-item mb-2">SOBRE MESA</div>
-    <ol class="list-group list-group-numbered mb-3">
-      @for (item of itemConsumoService.itensConsumo(); track $index) {
-      @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'SOBRE_MESA'){
-      <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">
-            <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
+        </li>
+        }
+        }
+      </ol>
+     }
+  
+  
+     @if(existePratosSobremesa()){
+      <div class="tipo-item mb-2">SOBRE MESA</div>
+      <ol class="list-group list-group-numbered mb-3">
+        @for (item of itemConsumoService.itensConsumo(); track $index) {
+        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'SOBRE_MESA'){
+        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+            </div>
           </div>
-        </div>
-        <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-      </li>
-      }
-      }
-    </ol>
-   }
-
-   @if(cardapioUnico()){
-    <div class="sub-title text-center mb-3 fs-4">
-      BEBIDAS
-    </div>
-   }
-
-   @if(existeBebidaAlcoolica()){
-    <div class="tipo-item mb-2">BEBIDAS ÁLCOOLICAS</div>
-    <ol class="list-group list-group-numbered mb-3">
-      @for (item of itemConsumoService.itensConsumo(); track $index) {
-      @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'ALCOOLICA'){
-      <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">
-            <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
+        </li>
+        }
+        }
+      </ol>
+     }
+  
+     @if(cardapioUnico()){
+      <div class="sub-title text-center mb-3 fs-4">
+        BEBIDAS
+      </div>
+     }
+  
+     @if(existeBebidaAlcoolica()){
+      <div class="tipo-item mb-2">BEBIDAS ÁLCOOLICAS</div>
+      <ol class="list-group list-group-numbered mb-3">
+        @for (item of itemConsumoService.itensConsumo(); track $index) {
+        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'ALCOOLICA'){
+        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+            </div>
           </div>
-        </div>
-        <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-      </li>
-      }
-      }
-    </ol>
-   }
-
-
-   @if(existeBebidaNaoAlcoolica()){
-    <div class="tipo-item mb-2">REFRIGERANTES E SUMOS</div>
-    <ol class="list-group list-group-numbered mb-3">
-      @for (item of itemConsumoService.itensConsumo(); track $index) {
-      @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'NAO_ALCOOLICA'){
-      <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">
-            <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
+        </li>
+        }
+        }
+      </ol>
+     }
+  
+  
+     @if(existeBebidaNaoAlcoolica()){
+      <div class="tipo-item mb-2">REFRIGERANTES E SUMOS</div>
+      <ol class="list-group list-group-numbered mb-3">
+        @for (item of itemConsumoService.itensConsumo(); track $index) {
+        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'NAO_ALCOOLICA'){
+        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">
+              <a [routerLink]="['/itens-consumo/', item.id]">{{ item.descricao }}</a>
+            </div>
           </div>
-        </div>
-        <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-      </li>
-      }
-      }
-    </ol>
-   }
+          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
+        </li>
+        }
+        }
+      </ol>
+     }
+  } @else {
+    <div class="alert alert-warning" role="alert"> Nenhum item adicionado. Adicione um novo item clicando no botão a baixo! "+ Novo item" </div>
+  }
 
 
   <div class="d-flex justify-content-end mt-4">
