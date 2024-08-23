@@ -24,10 +24,10 @@ export class CardapioDetailComponent implements OnInit{
   protected modalService = inject(NgbModal);
 
   ngOnInit(): void {
-    this.carregaCardapio();
+    this.carregaCardapioEItensConsumoCardapio();
   }
 
-  carregaCardapio(){
+  carregaCardapioEItensConsumoCardapio(){
     const cardapioId = this.activatedRoute.snapshot.params['cardapioId'];
     this.cardapioService.getOneCardapio(cardapioId).subscribe(cardapioResult => {
       this.cardapio = cardapioResult;

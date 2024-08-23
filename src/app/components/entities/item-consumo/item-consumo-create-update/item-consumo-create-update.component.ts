@@ -82,12 +82,12 @@ export class ItemConsumoCreateUpdateComponent {
     this.itemConsumo = this.itemConsumoForm.value;
     if (this.itemConsumo?.id != null) {
       this.itemConsumoService.updateItemConsumo(this.itemConsumo).subscribe(() => {
-        this.itemConsumoService.getItensConsumo();
+        this.itemConsumoService.getAllItensConsumoPorCardapio(this.itemConsumo?.cardapio?.id!);
       });
 
     } else {
       this.itemConsumoService.saveItenConsumo(this.itemConsumo!).subscribe(() => {
-        this.itemConsumoService.getItensConsumo();
+        this.itemConsumoService.getAllItensConsumoPorCardapio(this.itemConsumo?.cardapio?.id!);
 
       });
     }
