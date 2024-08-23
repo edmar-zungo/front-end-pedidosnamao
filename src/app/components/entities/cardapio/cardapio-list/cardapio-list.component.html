@@ -1,13 +1,13 @@
 <div class="container mt-4 mb-4">
   <h2 class="text-center fs-1">Cardápios</h2>
 
-  <div class="mb-3 d-flex justify-content-end me-3">
-    <button type="button" class="btn btn-warning" (click)="openCreateCardapioModal()">
+  <div class="mb-3 d-flex justify-content-end me-3 ">
+    <button type="button" class="btn btn-warning text-white active" (click)="openCreateCardapioModal()">
       <i class="fa fa-plus" aria-hidden="true"></i>
       Novo
     </button>
 
-    <button type="button" class="btn btn-info ms-2" (click)="this.cardapioService.getCardapios()">
+    <button type="button" class="btn btn-info ms-2 text-white active" (click)="this.cardapioService.getCardapios()">
       <i class="fa fa-refresh" aria-hidden="true"></i>
     </button>
   </div>
@@ -18,12 +18,12 @@
       <div style="max-width: 41rem" class="mb-3">
         <div class="card">
           <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-4 border-end">
               @if(cardapio.tipoCardapio === 'PRATOS'){
-              <img src="{{ imagemCardapioComida }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
+              <img src="{{ imagemCardapioPratos }}" class="img-fluid rounded-start " alt="Imagem default para o cardápio"
                 style="height: 11em; width: 100%" />
               } @else if(cardapio.tipoCardapio === 'BEBIDAS'){
-              <img src="{{ imagemCardapioBebida }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
+              <img src="{{ imagemCardapioBebidas }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
                 style="height: 11em; width: 100%" />
               } @else {
               <img src="{{ imagemCardapioUnico }}" class="img-fluid rounded-start" alt="Imagem default para o cardápio"
@@ -45,8 +45,8 @@
                     (click)="deleteCardapio(cardapio.id!)">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </button>
-                  <button type="button" class="btn btn-warning btn-sm float-end" (click)="openCreateItemConsumoModel(cardapio)">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Adicionar item
+                  <button type="button" class="btn btn-warning btn-sm p-1 fs-6 w-25 float-end text-white active" (click)="openCreateItemConsumoModel(cardapio)">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Item
                   </button>
                 </div>
               </div>

@@ -17,9 +17,9 @@ import { ItemConsumoCreateUpdateComponent } from '../../item-consumo/item-consum
 export class CardapioListComponent implements OnInit {
 
 
-  imagemCardapioComida = '../../../../../assets/images/board-3200054_1280.jpg';
-  imagemCardapioBebida = '../../../../../assets/images/menu.jpg';
-  imagemCardapioUnico = '../../../../../assets/images/list-menu.png';
+  imagemCardapioPratos = '../../../../../assets/images/pratos.png';
+  imagemCardapioBebidas = '../../../../../assets/images/bebidas.png';
+  imagemCardapioUnico = '../../../../../assets/images/unico.png';
 
   protected modalService = inject(NgbModal);
   constructor(public cardapioService: CardapioService) { }
