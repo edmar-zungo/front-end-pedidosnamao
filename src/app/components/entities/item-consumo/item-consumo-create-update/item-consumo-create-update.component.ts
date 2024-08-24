@@ -35,6 +35,7 @@ export class ItemConsumoCreateUpdateComponent {
 
   ngOnInit(): void {
     this.criaFormulario();
+    this.setDefaultTipoItemConsumoPeloTipoCardapio();
 
     if (this.itemConsumo != null) {
       this.preencheFormularioActualizacao(this.itemConsumo);
@@ -116,6 +117,16 @@ export class ItemConsumoCreateUpdateComponent {
       this.itemConsumoForm.get('imagem')?.updateValueAndValidity();
     }
 
+  }
+
+  setDefaultTipoItemConsumoPeloTipoCardapio(){
+    if(this.cardapio?.tipoCardapio === 'PRATOS'){
+      this.itemConsumoForm.patchValue({ tipoItemConsumo: TipoItemConsumo.PRATO });
+    }
+
+    if(this.cardapio?.tipoCardapio === 'BEBIDAS'){
+      this.itemConsumoForm.patchValue({ tipoItemConsumo: TipoItemConsumo.BEBIDA });
+    }
   }
 
 }
