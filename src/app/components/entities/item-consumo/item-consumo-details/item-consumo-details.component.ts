@@ -28,6 +28,7 @@ export class ItemConsumoDetailsComponent implements OnInit{
   }
 
   openCreateItemConsumoModel() {
+    this.cancel();
 		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
     modalRef.componentInstance.itemConsumo = this.itemConsumo;
 	} 
