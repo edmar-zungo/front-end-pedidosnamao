@@ -35,11 +35,13 @@ export class ItemConsumoCreateUpdateComponent {
 
   ngOnInit(): void {
     this.criaFormulario();
-    this.setDefaultTipoItemConsumoPeloTipoCardapio();
+    
 
     if (this.itemConsumo != null) {
       this.preencheFormularioActualizacao(this.itemConsumo);
     }
+
+    this.setDefaultTipoItemConsumoPeloTipoCardapio();
   }
 
   criaFormulario() {

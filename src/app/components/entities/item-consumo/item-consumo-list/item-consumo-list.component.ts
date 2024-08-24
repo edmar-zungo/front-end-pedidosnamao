@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { CardapioModel } from '../../cardapio/cardapio.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemConsumoCreateUpdateComponent } from '../item-consumo-create-update/item-consumo-create-update.component';
+import { ItemConsumoDetailsComponent } from '../item-consumo-details/item-consumo-details.component';
+import { ItemConsumoModel } from '../item-consumo.model';
 
 @Component({
   selector: 'app-item-consumo-list',
@@ -87,6 +89,11 @@ export class ItemConsumoListComponent implements OnInit {
   openCreateItemConsumoModel() {
 		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
     modalRef.componentInstance.cardapio = this.cardapio();
+	}  
+  openDetailItemConsumoModel(itemConsumo: ItemConsumoModel) {
+		const modalRef = this.modalService.open(ItemConsumoDetailsComponent, { size: 'lg' });
+    modalRef.componentInstance.itemConsumo = itemConsumo;
+    
 	}
 
 }

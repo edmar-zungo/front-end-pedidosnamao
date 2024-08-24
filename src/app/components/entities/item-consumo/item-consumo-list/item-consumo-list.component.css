@@ -13,6 +13,7 @@ a{
      color: #664d03;
      font-weight: 500;
      font-size: 1.2rem;
+     cursor: pointer;
 }
 
 .badge-style{
