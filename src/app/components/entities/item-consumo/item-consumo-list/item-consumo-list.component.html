@@ -4,7 +4,7 @@
       <div class="tipo-item mb-2">PRINCIPAL</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL'){
+        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL' && item.estadoItemConsumo === 'DISPONIVEL'){
         <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
           <div class="ms-2 me-auto">
             <div class="fw-bold">
@@ -22,7 +22,7 @@
       <div class="tipo-item mb-2">ENTRADA</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'ENTRADA'){
+        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'ENTRADA' && item.estadoItemConsumo === 'DISPONIVEL'){
         <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
           <div class="ms-2 me-auto">
             <div class="fw-bold">
@@ -41,7 +41,7 @@
       <div class="tipo-item mb-2">SOBRE MESA</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'SOBRE_MESA' ){
+        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'SOBRE_MESA' && item.estadoItemConsumo === 'DISPONIVEL'){
         <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
           <div class="ms-2 me-auto">
             <div class="fw-bold">
@@ -65,7 +65,7 @@
       <div class="tipo-item mb-2">BEBIDAS ÁLCOOLICAS</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'ALCOOLICA'){
+        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'ALCOOLICA' && item.estadoItemConsumo === 'DISPONIVEL'){
         <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
           <div class="ms-2 me-auto">
             <div class="fw-bold">
@@ -84,7 +84,7 @@
       <div class="tipo-item mb-2">REFRIGERANTES E SUMOS</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'NAO_ALCOOLICA'){
+        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'NAO_ALCOOLICA' && item.estadoItemConsumo === 'DISPONIVEL'){
         <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
           <div class="ms-2 me-auto">
             <div class="fw-bold">

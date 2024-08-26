@@ -26,6 +26,7 @@ export class ItemConsumoCreateUpdateComponent {
   tiposPrato = Object.keys(TipoPrato);
   tiposItemConsumo = Object.keys(TipoItemConsumo);
   dataActual = new Date(Date.now());
+  urlImagem: string | null = null;
 
   cardapio: CardapioModel | null = null;
 
@@ -38,6 +39,8 @@ export class ItemConsumoCreateUpdateComponent {
     
 
     if (this.itemConsumo != null) {
+
+    this.carregarImagem(this.itemConsumo?.imagem!);
       this.preencheFormularioActualizacao(this.itemConsumo);
     }
 
@@ -55,7 +58,7 @@ export class ItemConsumoCreateUpdateComponent {
       cozinha: new FormControl(''),
       origem: new FormControl(''),
       dataActualizacao: new FormControl(this.dataActual),
-      estadoItem: new FormControl(Estado.DISPONIVEL),
+      estadoItemConsumo: new FormControl(Estado.DISPONIVEL),
       tipoPrato: new FormControl(null),
       tipoBebida: new FormControl(null),
       cardapio: new FormControl(this.cardapio),
@@ -68,7 +71,7 @@ export class ItemConsumoCreateUpdateComponent {
       imagem: itemConsumo.imagem,
       descricao: itemConsumo.descricao,
       preco: itemConsumo.preco,
-      estadoItem: itemConsumo.estadoItem,
+      estadoItemConsumo: itemConsumo.estadoItemConsumo,
       dataCriacao: itemConsumo.dataCriacao,
       cozinha: itemConsumo.cozinha,
       origem: itemConsumo.origem,
@@ -128,6 +131,13 @@ export class ItemConsumoCreateUpdateComponent {
 
     if(this.cardapio?.tipoCardapio === 'BEBIDAS'){
       this.itemConsumoForm.patchValue({ tipoItemConsumo: TipoItemConsumo.BEBIDA });
+    }
+  }
+
+
+  carregarImagem(imagemBase64: string | null){
+    if (imagemBase64) {
+       this.urlImagem = `data:'';base64,${imagemBase64}`;
     }
   }
 

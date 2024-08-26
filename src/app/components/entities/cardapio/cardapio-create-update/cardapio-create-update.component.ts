@@ -37,7 +37,7 @@ export class CardapioCreateUpdateComponent {
     this.cardapioForm = new FormGroup({
       id: new FormControl(),
       descricao: new FormControl('', [Validators.required]),
-      tipoCardapio: new FormControl([Validators.required])
+      tipoCardapio: new FormControl(null, [Validators.required])
     });
   }
 

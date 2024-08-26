@@ -1,65 +1,81 @@
 <div class="modal-header">
-     
-       <h4 class="modal-title">{{ itemConsumo?.descricao }}</h4>
-     
-   </div>
-   
-   <div class="modal-body">
-        <form>
-                
-          <div class="row mb-3">
-           <div class="col-8">
-             <img [src]="urlImagem" width="100%" height="100%">
-           </div>
-          </div>
-   
-          <div class="row mb-3">
-           <div class="col-3">
-             <label for="tipoItemConsumo" class="form-label" >Tipo de item</label>
-             <input type="text" name="tipoItemConsumo" id="tipoItemConsumo" class="form-control" formControlName="tipoItemConsumo" [value]="itemConsumo?.tipoItemConsumo" readonly>
-                
-           </div>
-           <div class="col-3">
-   
-             <label for="preco" class="form-label">Preço</label>
-             <div class="input-group mb-3">
-               <input type="number" class="form-control" name="preco" id="preco" formControlName="preco" [value]="itemConsumo?.preco" readonly>
-               <span class="input-group-text">Kz</span>
-             </div>
-           </div>
 
-           @if(itemConsumo?.tipoItemConsumo === 'PRATO'){
-               <div class="col-3">
-                 <label for="cozinha" class="form-label" >Cozinha</label>
-                 <input type="text" name="cozinha" id="cozinha" class="form-control" formControlName="cozinha" [value]="itemConsumo?.cozinha" readonly>
-               </div>
-               <div class="col-3">
-                 <label for="tipoPrato" class="form-label" >Tipo de prato</label>
-                 <input type="text" name="tipoPrato" id="tipoPrato" class="form-control" formControlName="tipoPrato" [value]="itemConsumo?.tipoPrato" readonly>
-                  
-               </div>
-             }
-             @if (itemConsumo?.tipoItemConsumo === 'BEBIDA') {
-               <div class="col-3">
-                 <label for="origem" class="form-label" >Origem</label>
-                 <input type="text" name="origem" id="origem" class="form-control" formControlName="origem" [value]="itemConsumo?.origem" readonly>
-               </div>
-               <div class="col-3">
-                 <label for="tipoBebida" class="form-label" >Tipo de bebida</label>
-                 <input type="text" name="tipoBebida" id="tipoBebida" class="form-control" formControlName="tipoBebida" [value]="itemConsumo?.tipoBebida" readonly>
-               </div>
-             }
-          </div>
-      
-          <div class="float-end mb-3 mt-3">
-            <button type="button" class="btn btn-secondary me-2 header-color fw-bold" (click)="cancel()">
-              <i class="fa fa-times" aria-hidden="true"></i>
-              Cancelar
-            </button>
-            <button type="button" class="btn btn-warning header-color fw-bold" (click)="openCreateItemConsumoModel()">
-              <i class="fa fa-edit" aria-hidden="true"></i>
-              Editar
-            </button>
-          </div>
-        </form>
+  <h4 class="modal-title">{{ itemConsumo?.descricao }}</h4>
+
+</div>
+
+<div class="modal-body">
+  <form>
+
+    <div class="row mb-3">
+      <div class="col-8">
+        <img [src]="urlImagem" width="100%" height="100%">
       </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-3">
+        <label for="tipoItemConsumo" class="form-label">Tipo de item</label>
+        <input type="text" name="tipoItemConsumo" id="tipoItemConsumo" class="form-control"
+          formControlName="tipoItemConsumo" [value]="itemConsumo?.tipoItemConsumo" readonly>
+
+      </div>
+      <div class="col-3">
+
+        <label for="preco" class="form-label">Preço</label>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" name="preco" id="preco" formControlName="preco"
+            [value]="itemConsumo?.preco" readonly>
+          <span class="input-group-text">Kz</span>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <label for="estadoItemConsumo" class="form-label">Estado do item</label>
+        <input type="text" name="estadoItemConsumo" id="estadoItemConsumo" class="form-control"
+          formControlName="estadoItemConsumo" [value]="itemConsumo?.estadoItemConsumo" readonly>
+
+
+      </div>
+
+      @if(itemConsumo?.tipoItemConsumo === 'PRATO'){
+      <div class="col-3">
+        <label for="tipoPrato" class="form-label">Tipo de prato</label>
+        <input type="text" name="tipoPrato" id="tipoPrato" class="form-control" formControlName="tipoPrato"
+          [value]="itemConsumo?.tipoPrato" readonly>
+
+      </div>
+      <div class="col-3">
+        <label for="cozinha" class="form-label">Cozinha</label>
+        <input type="text" name="cozinha" id="cozinha" class="form-control" formControlName="cozinha"
+          [value]="itemConsumo?.cozinha" readonly>
+      </div>
+
+      }
+      @if (itemConsumo?.tipoItemConsumo === 'BEBIDA') {
+
+      <div class="col-3">
+        <label for="tipoBebida" class="form-label">Tipo de bebida</label>
+        <input type="text" name="tipoBebida" id="tipoBebida" class="form-control" formControlName="tipoBebida"
+          [value]="itemConsumo?.tipoBebida" readonly>
+      </div>
+      <div class="col-3">
+        <label for="origem" class="form-label">Origem</label>
+        <input type="text" name="origem" id="origem" class="form-control" formControlName="origem"
+          [value]="itemConsumo?.origem" readonly>
+      </div>
+      }
+    </div>
+
+    <div class="float-end mb-3 mt-3">
+      <button type="button" class="btn btn-secondary me-2 header-color fw-bold" (click)="cancel()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+        Cancelar
+      </button>
+      <button type="button" class="btn btn-warning header-color fw-bold" (click)="openCreateItemConsumoModel()">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+        Editar
+      </button>
+    </div>
+  </form>
+</div>

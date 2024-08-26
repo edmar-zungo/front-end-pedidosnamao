@@ -10,7 +10,7 @@ export interface ItemConsumoModel {
      imagemContentType: string | null;
      descricao: string | null;
      preco: number | null;
-     estadoItem: Estado | null;
+     estadoItemConsumo: Estado | null;
      dataCriacao: Date | null;
      cozinha: string | null;
      origem: string | null;
