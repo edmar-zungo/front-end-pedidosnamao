@@ -34,7 +34,6 @@ export class PedidoCreateUpdateComponent implements OnInit{
 
   criaFormulario() {
     const dataActual = new Date(Date.now());
-    console.log(dataActual.toISOString().slice(0, 16))
     this.pedidoForm = new FormGroup({
       id: new FormControl(),
       dataCriacao: new FormControl(dataActual.toISOString().slice(0, 16)),
