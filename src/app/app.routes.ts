@@ -6,6 +6,7 @@ import { CardapioDetailComponent } from './components/entities/cardapio/cardapio
 import { ItemConsumoListComponent } from './components/entities/item-consumo/item-consumo-list/item-consumo-list.component';
 import { ItemConsumoDetailsComponent } from './components/entities/item-consumo/item-consumo-details/item-consumo-details.component';
 import { PedidoListComponent } from './components/entities/pedido/pedido-list/pedido-list.component';
+import { PedidoCreateUpdateComponent } from './components/entities/pedido/pedido-create-update/pedido-create-update.component';
 
 export const routes: Routes = [
      { path: 'mesas', component: MesaListComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
      { path: 'itens-consumo', component: ItemConsumoListComponent },
      { path: 'itens-consumo/:itemConsumoId', component: ItemConsumoDetailsComponent },
      { path: 'itens-pedido', component: ItemPedidoComponent },
-     { path: 'pedidos', component: PedidoListComponent }
+     { path: 'pedidos', component: PedidoListComponent },
+     { path: 'pedidos/new', component: PedidoCreateUpdateComponent }
 ];
