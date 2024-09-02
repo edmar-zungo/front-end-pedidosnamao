@@ -1,13 +1,70 @@
-<div class="container mt-4 mb-4">
+<div class="container mt-4 mb-4 ">
     <h2 class="text-center fs-1">Criar Pedidos</h2>
 
-    <div class="row">
-        <div class="col-4">
-            <label for="mesa" class="form-label">Mesa</label>
-            <select name="mesa" id="mesa" class="form-control">
-                <option [value]="null"></option>
-            </select>
+    <form [formGroup]="pedidoForm" (submit)="onSave()">
+        <div class="col-11">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <label for="mesa" class="form-label">Mesa</label>
+                    <select name="mesa" id="mesa" class="form-control" formControlName="mesa">
+                        <option [value]="null"></option>
+                        @for(mesa of mesaService.mesas(); track $index){
+                        <option [value]="mesa">{{ mesa.descricao }}</option>
+                        }
+                    </select>
+                </div>
+    
+            </div>
+    
+            <div class="mb-3 d-flex align-items-center">
+                
+                <input type="checkbox" name="isDeliver" id="isDeliver" class="form-check me-1" formControlName="isDeliver">
+                <label for="isDeliver" class="form-label mt-1">Entrega ?</label>
+            </div>
+    
+            @if(pedidoForm.get('isDeliver')?.value === true){
+               <div class="col-6 mb-3">
+                <label for="enderecoEntregaDetalhado" class="form-label">Endereço de entrega</label>
+                <textarea name="enderecoEntregaDetalhado" id="enderecoEntregaDetalhado" class="form-control" formControlName="enderecoEntregaDetalhado"></textarea>
+               </div>
+            }
+    
+            <div class="row mb-3">
+                @if(pedidoForm.get('isDeliver')?.value === true){
+                    <div class="col-2">
+                        <label for="valorEntrega" class="form-label">Valor pela entrega</label>
+                        <input type="number" name="valorEntrega" id="valorEntrega" class="form-control"
+                            formControlName="valorEntrega" />
+                    </div>
+                }
+    
+                <div class="col-2">
+                    <label for="totalPagar" class="form-label">Total a pagar</label>
+                    <input type="number" name="totalPagar" id="totalPagar" class="form-control"
+                        formControlName="totalPagar" />
+                </div>
+                <div class="col-2">
+                    <label for="totalPago" class="form-label">Total pago</label>
+                    <input type="number" name="totalPago" id="totalPago" class="form-control" formControlName="totalPago" />
+                </div>
+                <div class="col-2">
+                    <label for="totalPagar" class="form-label">Total de troco</label>
+                    <input type="number" name="totalPago" id="totalPago" class="form-control"
+                        formControlName="totalPago" />
+                </div>
+            </div>
         </div>
-        <div class="col-4"></div>
-    </div>
+
+        <div class="col-7 d-flex justify-content-start">
+            <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-warning" [disabled]="this.pedidoForm.invalid">
+              <i class="fa fa-save" aria-hidden="true"></i>
+              Salvar
+            </button>
+          </div>
+
+    </form>
 </div>
