@@ -17,19 +17,26 @@
     </div>
     }
 
-    <div class="row mb-3">
-      @if(itemConsumo?.id != null){
-        <div class="row mb-3">
-          <div class="col-8">
-            <img [src]="urlImagem" width="100%" height="100%">
-          </div>
+    <div class="row">
+      @if(itemConsumo?.imagem != null){
+      <div class="row mb-3">
+        <div class="col-8 mb-5">
+          <img [src]="urlImagem" width="100%" height="100%" class="mb-2">
+          <input
+          type="file"
+          class="form-control "
+          (change)="onFileChange($event)"
+          
+        >
+       
         </div>
+      </div>
       } @else {
-        <div class="col-8">
-          <label for="imagem" class="form-label">Imagem</label>
-          <input type="file" name="imagem" id="imagem" class="form-control" (change)="onFileChange($event)">
-        </div>
-      
+      <div class="col-8 mb-3">
+        <label for="imagem" class="form-label">Imagem</label>
+        <input type="file" name="imagem" id="imagem" class="form-control" (change)="onFileChange($event)">
+      </div>
+
       }
     </div>
 

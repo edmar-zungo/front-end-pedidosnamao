@@ -120,6 +120,10 @@ export class ItemConsumoCreateUpdateComponent {
         imagemContentType: file.type // Adiciona o tipo de conteúdo
       });
       this.itemConsumoForm.get('imagem')?.updateValueAndValidity();
+
+      this.carregarImagem(this.itemConsumoForm.get('imagem')?.value);
+
+
     }
 
   }
@@ -139,6 +143,14 @@ export class ItemConsumoCreateUpdateComponent {
     if (imagemBase64) {
        this.urlImagem = `data:'';base64,${imagemBase64}`;
     }
+  }
+
+  limparInputImage(imagem: string): void {
+    this.itemConsumoForm.patchValue({
+      [imagem]: null
+    });
+
+    
   }
 
 }

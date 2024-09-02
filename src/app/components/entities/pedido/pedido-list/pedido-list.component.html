@@ -1,0 +1,56 @@
+<div class="container mt-4 mb-4">
+    <h2 class="text-center fs-1">Pedidos</h2>
+
+    <div class="mb-3 d-flex justify-content-end">
+      <button type="button" class="btn btn-warning fw-semibold">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Novo
+      </button>
+  
+      <button type="button" class="btn btn-info ms-2 fw-semibold">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div>
+        @if(pedidoService.pedidos().length !== 0){
+            <table class="table table-striped">
+
+                <thead>
+                  <tr>
+                    <th scope="col">Número</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Data de criação</th>
+                    <th scope="col">Entrega ?</th>
+                    <th scope="col">Total a pagar</th>
+                    <th scope="col">Total pago</th>
+                    <th scope="col">Total de troco</th>
+                    <th></th>
+                  </tr>
+                </thead>
+    
+                <tbody>
+                    @for(pedido of pedidoService.pedidos(); track $index){
+                        <tr>
+                             <td>{{pedido.numero}}</td>
+                             <td>{{pedido.descricao}}</td>
+                             <td>{{pedido.estadoPedido}}</td>
+                             <td>{{pedido.dataCriacao}}</td>
+                             <td>{{pedido.isDeliver}}</td>
+                             <td>{{pedido.totalPagar}}</td>
+                             <td>{{pedido.totalPago}}</td>
+                             <td>{{pedido.totalTroco}}</td>
+                             <td></td>               
+                        </tr>
+                    }
+                </tbody>
+    
+            </table>
+        }@else {
+            <div class="alert alert-primary" role="alert">
+                Nenhum Pedido cadastrado. Adicione pedidos clicando no botão "Novo".
+              </div>
+        }
+    </div>
+</div>

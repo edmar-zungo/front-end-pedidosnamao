@@ -1,13 +1,13 @@
 <div class="container mt-4 mb-4">
-  <h2 class="text-center fs-1 header-color">Mesas</h2>
+  <h2 class="text-center fs-1">Mesas</h2>
 
   <div class="mb-3 d-flex justify-content-end">
-    <button type="button" class="btn btn-warning header-color fw-bold" (click)="openCresteMesaModal()">
+    <button type="button" class="btn btn-warning fw-semibold" (click)="openCresteMesaModal()">
       <i class="fa fa-plus" aria-hidden="true"></i>
       Nova
     </button>
 
-    <button type="button" class="btn btn-info ms-2 header-color fw-bold" (click)="this.mesaService.getMesas()">
+    <button type="button" class="btn btn-info ms-2 fw-semibold" (click)="this.mesaService.getMesas()">
       <i class="fa fa-refresh" aria-hidden="true"></i>
     </button>
   </div>
@@ -23,7 +23,7 @@
               alt="Imagem"
             />
             <div class="card-body">
-              <h5 class="card-title header-color">{{mesa.numero}}</h5>
+              <h5 class="card-title">{{mesa.numero}}</h5>
   
               <li class="card-tex">Lugares: {{mesa.quantidadeLugares}}</li>
               <li class="card-tex">Descrição: {{mesa.descricao}}</li>
