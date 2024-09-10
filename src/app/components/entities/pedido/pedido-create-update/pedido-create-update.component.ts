@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, effect, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PedidoModel } from '../pedido.model';
 import { Estado } from '../../enums/estado.enum';
 import { EstadoPedido } from '../../enums/estado-pedido.enum';
@@ -22,8 +22,11 @@ export class PedidoCreateUpdateComponent implements OnInit{
   estadoPedido = Object.keys(EstadoPedido);
   mesas: MesaModel[] = [];
 
+  mesa: MesaModel | null = null;
+
   router = inject(Router);
   pedidoService = inject(PedidoService);
+  formBuilder = inject(FormBuilder);
 
   constructor(public mesaService: MesaService){}
 
@@ -34,28 +37,28 @@ export class PedidoCreateUpdateComponent implements OnInit{
 
   criaFormulario() {
     const dataActual = new Date(Date.now());
-    this.pedidoForm = new FormGroup({
-      id: new FormControl(),
-      dataCriacao: new FormControl(dataActual.toISOString().slice(0, 16)),
-      sequencia: new FormControl(null),
-      numero: new FormControl(null),
-      dataActualizacao: new FormControl(dataActual.toISOString().slice(0, 16)),
-      mesa: new FormControl(null),
-      estadoPedido: new FormControl(EstadoPedido.PENDENTE),
-      descricao: new FormControl(),
-      isDeliver: new FormControl(false),
-      enderecoEntregaDetalhado: new FormControl(''),
-      tempoEntrega: new FormControl(null),
-      descricaoEntrega: new FormControl(''),
-      valorEntrega: new FormControl(0, [Validators.required]),
-      totalPagar: new FormControl(0,  [Validators.required]),
-      totalPago: new FormControl(0, [Validators.required]),
-      totalTroco: new FormControl(0, [Validators.required])
+    this.pedidoForm = this.formBuilder.group({
+      id: [],
+      dataCriacao: [dataActual.toISOString().slice(0, 16)],
+      sequencia: [null],
+      numero: [null],
+      dataActualizacao: [dataActual.toISOString().slice(0, 16)],
+      mesa: [null],
+      estadoPedido: [EstadoPedido.PENDENTE],
+      descricao: [""],
+      deliver: [false],
+      enderecoEntregaDetalhado: [null],
+      tempoEntrega: [null],
+      descricaoEntrega: [""],
+      valorEntrega: [0, [Validators.required]],
+      totalPagar: [0, [Validators.required]],
+      totalPago: [0, [Validators.required]],
+      totalTroco: [0, [Validators.required]]
     });
   }
 
   carregaMesas(){
-    this.mesaService.getMesas();
+     this.mesaService.getMesas();
   }
 
   cancel(){
@@ -63,20 +66,21 @@ export class PedidoCreateUpdateComponent implements OnInit{
   }
 
   onSave() {
-    this.pedido = this.pedidoForm.value;
-    if (this.pedido?.id != null) {
-      this.pedidoService.updatePedido(this.pedido).subscribe(() => {
-        this.pedidoService.getPedidos();
-      });
+   this.pedido = this.pedidoForm.value;
+     if (this.pedido?.id != null) {
+       this.pedidoService.updatePedido(this.pedido).subscribe(() => {
+         this.pedidoService.getPedidos();
+         this.cancel();
+       });
 
-    } else {
-      this.pedidoService.savePedido(this.pedido!).subscribe(() => {
-        this.pedidoService.getPedidos();
+     } else {
+       this.pedidoService.savePedido(this.pedido!).subscribe(() => {
+         this.pedidoService.getPedidos();
+         this.cancel();
+       });
+     }
 
-      });
-    }
-
-    this.cancel();
+     
 
   }
 

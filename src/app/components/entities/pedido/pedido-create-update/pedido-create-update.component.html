@@ -1,15 +1,15 @@
 <div class="container mt-4 mb-4 ">
     <h2 class="text-center fs-1">Criar Pedidos</h2>
 
-    <form [formGroup]="pedidoForm" (submit)="onSave()">
+    <form [formGroup]="pedidoForm" (ngSubmit)="onSave()">
         <div class="col-11">
             <div class="row mb-3">
                 <div class="col-3">
                     <label for="mesa" class="form-label">Mesa</label>
                     <select name="mesa" id="mesa" class="form-control" formControlName="mesa">
-                        <option [value]="null"></option>
+                        <option [ngValue]="null"></option>
                         @for(mesa of mesaService.mesas(); track $index){
-                        <option [value]="mesa">{{ mesa.descricao }}</option>
+                        <option [ngValue]="mesa">{{ mesa.descricao }}</option>
                         }
                     </select>
                 </div>
@@ -18,11 +18,11 @@
     
             <div class="mb-3 d-flex align-items-center">
                 
-                <input type="checkbox" name="isDeliver" id="isDeliver" class="form-check me-1" formControlName="isDeliver">
-                <label for="isDeliver" class="form-label mt-1">Entrega ?</label>
+                <input type="checkbox" name="deliver" id="deliver" class="form-check me-1" formControlName="deliver">
+                <label for="deliver" class="form-label mt-1">Entrega ?</label>
             </div>
     
-            @if(pedidoForm.get('isDeliver')?.value === true){
+            @if(pedidoForm.get('deliver')?.value === true){
                <div class="col-6 mb-3">
                 <label for="enderecoEntregaDetalhado" class="form-label">Endereço de entrega</label>
                 <textarea name="enderecoEntregaDetalhado" id="enderecoEntregaDetalhado" class="form-control" formControlName="enderecoEntregaDetalhado"></textarea>
@@ -30,7 +30,7 @@
             }
     
             <div class="row mb-3">
-                @if(pedidoForm.get('isDeliver')?.value === true){
+                @if(pedidoForm.get('deliver')?.value === true){
                     <div class="col-2">
                         <label for="valorEntrega" class="form-label">Valor pela entrega</label>
                         <input type="number" name="valorEntrega" id="valorEntrega" class="form-control"

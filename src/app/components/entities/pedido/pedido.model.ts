@@ -7,10 +7,10 @@ export interface PedidoModel {
     sequencia: number | null;
     numero: string | null;
     dataActualizacao: Date | null;
-    mesa: Pick<MesaModel, 'id' | 'numero' | 'estadoMesa'> | null;
+    mesa: Pick<MesaModel, 'id' | 'descricao' | 'estadoMesa'> | null;
     estadoPedido: Estado | null;
     descricao: string | null;
-    isDeliver: boolean | null;
+    deliver: boolean | null;
     enderecoEntregaDetalhado: string | null;
     tempoEntrega: number | null;
     descricaoEntrega: string | null;
