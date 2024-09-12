@@ -7,11 +7,13 @@ import { MesaModel } from '../../mesa/mesa.model';
 import { MesaService } from '../../mesa/mesa.service';
 import { Router } from '@angular/router';
 import { PedidoService } from '../../pedido.service';
+import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pedido-create-update',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgxCurrencyDirective],
   templateUrl: './pedido-create-update.component.html',
   styleUrl: './pedido-create-update.component.css'
 })
@@ -27,6 +29,7 @@ export class PedidoCreateUpdateComponent implements OnInit{
   router = inject(Router);
   pedidoService = inject(PedidoService);
   formBuilder = inject(FormBuilder);
+  activeModal = inject(NgbModal);
 
   constructor(public mesaService: MesaService){}
 
@@ -61,9 +64,10 @@ export class PedidoCreateUpdateComponent implements OnInit{
      this.mesaService.getMesas();
   }
 
-  cancel(){
-    this.router.navigate(['/pedidos']);
+  cancel() {
+    this.activeModal.dismissAll();
   }
+
 
   onSave() {
    this.pedido = this.pedidoForm.value;

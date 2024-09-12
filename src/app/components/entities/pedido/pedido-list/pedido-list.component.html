@@ -1,8 +1,8 @@
 <div class="container mt-4 mb-4">
-    <h2 class="text-center fs-1">Pedidos</h2>
+    <h2 class="text-start fs-1">Pedidos</h2>
 
     <div class="mb-3 d-flex justify-content-end">
-      <button type="button" class="btn btn-warning fw-semibold" (click)="goToCreateUpdateComponent()">
+      <button type="button" class="btn btn-warning fw-semibold" (click)="openCreatePedidoModel()">
         <i class="fa fa-plus" aria-hidden="true"></i>
         Novo
       </button>
@@ -23,9 +23,9 @@
                     <th scope="col">Descrição</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Data de criação</th>
-                    <th scope="col">Entrega ?</th>
+                    <!-- <th scope="col">Entrega ?</th> -->
                     <!-- <th scope="col">Total a pagar</th> -->
-                    <th scope="col">Total pago</th>
+                    <!-- <th scope="col">Total pago</th> -->
                     <!-- <th scope="col">Total de troco</th> -->
                     <th></th>
                   </tr>
@@ -39,9 +39,9 @@
                              <td>{{pedido.descricao}}</td>
                              <td>{{pedido.estadoPedido}}</td>
                              <td>{{pedido.dataCriacao}}</td>
-                             <td>{{pedido.deliver}}</td>
+                             <!-- <td>{{pedido.deliver}}</td> -->
                              <!-- <td>{{pedido.totalPagar}}</td> -->
-                             <td>{{pedido.totalPago}}</td>
+                             <!-- <td>{{pedido.totalPago}}</td> -->
                              <!-- <td>{{pedido.totalTroco}}</td> -->
                              <td></td>               
                         </tr>
