@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
-import { PedidoModel } from './pedido/pedido.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment.development';
+import { PedidoModel } from './pedido.model';
 
 @Injectable({
   providedIn: 'root'

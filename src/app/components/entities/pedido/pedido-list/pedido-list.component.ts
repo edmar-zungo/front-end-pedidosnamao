@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PedidoService } from '../../pedido.service';
 import { Router } from '@angular/router';
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCreateUpdateComponent } from '../pedido-create-update/pedido-create-update.component';
+import { PedidoService } from '../pedido.service';
 
 @Component({
   selector: 'app-pedido-list',

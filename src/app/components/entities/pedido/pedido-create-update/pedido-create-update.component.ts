@@ -6,9 +6,9 @@ import { EstadoPedido } from '../../enums/estado-pedido.enum';
 import { MesaModel } from '../../mesa/mesa.model';
 import { MesaService } from '../../mesa/mesa.service';
 import { Router } from '@angular/router';
-import { PedidoService } from '../../pedido.service';
 import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PedidoService } from '../pedido.service';
 
 @Component({
   selector: 'app-pedido-create-update',
