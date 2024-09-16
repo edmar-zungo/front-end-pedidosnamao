@@ -1,14 +1,57 @@
 <div class="container mt-4 mb-4">
-    <h2 class="text-start fs-1">Itens de pedido</h2>
-    
-    <div class="mb-3 d-flex justify-content-end">
-        <button type="button" class="btn btn-warning fw-semibold" (click)="openCreateItemPedidoModel()">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-          Novo
-        </button>
-    
-        <button type="button" class="btn btn-info ms-2 fw-semibold">
-          <i class="fa fa-refresh" aria-hidden="true"></i>
-        </button>
-      </div>
+  <h2 class="text-start fs-1">Itens de pedido</h2>
+
+  <div class="mb-3 d-flex justify-content-end">
+    <button type="button" class="btn btn-warning fw-semibold" (click)="openCreateItemPedidoModel()">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      Novo
+    </button>
+
+    <button type="button" class="btn btn-info ms-2 fw-semibold">
+      <i class="fa fa-refresh" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div>
+    @if(itemPedidoService.itensPedido().length !== 0){
+        <table class="table table-striped">
+
+            <thead>
+              <tr>
+                <th scope="col">Item Consumo</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Pedido</th>
+                <!-- <th scope="col">Data de criação</th> -->
+                <!-- <th scope="col">Entrega ?</th> -->
+                <!-- <th scope="col">Total a pagar</th> -->
+                <!-- <th scope="col">Total pago</th> -->
+                <!-- <th scope="col">Total de troco</th> -->
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+                @for(itemPedido of itemPedidoService.itensPedido(); track $index){
+                    <tr>
+                         <td>{{itemPedido.itemConsumo?.descricao}}</td>
+                         <td>{{itemPedido.precoItemPedido}}</td>
+                         <td>{{itemPedido.quantidadeItemConsumo}}</td>
+                         <td>{{itemPedido.pedido?.id}}</td>
+                         <!-- <td>{{pedido.deliver}}</td> -->
+                         <!-- <td>{{pedido.totalPagar}}</td> -->
+                         <!-- <td>{{pedido.totalPago}}</td> -->
+                         <!-- <td>{{pedido.totalTroco}}</td> -->
+                         <td></td>               
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    }@else {
+        <div class="alert alert-primary" role="alert">
+            Nenhum Item de Pedido cadastrado. Adicione pedidos clicando no botão "Novo".
+          </div>
+    }
+</div>
 </div>

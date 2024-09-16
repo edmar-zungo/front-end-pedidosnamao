@@ -5,7 +5,7 @@ export interface ItemPedidoModel {
     id?: string | null;
     itemConsumo: Pick<ItemConsumoModel, 'id'| 'descricao' | 'tipoItemConsumo'> | null;
     quantidadeItemConsumo: number | null;
-    precoItemConsumo: number | null;
+    precoItemPedido: number | null;
     desconto: number | null;
     descricao: string | null;
     pedido: Pick<PedidoModel, 'id' | 'descricao' | 'estadoPedido'> | null;
