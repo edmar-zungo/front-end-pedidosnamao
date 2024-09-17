@@ -4,6 +4,8 @@ import { ItemPedidoCreateUpdateComponent } from '../item-pedido-create-update/it
 import { ItemConsumoService } from '../../item-consumo/item-consumo.service';
 import { PedidoService } from '../../pedido/pedido.service';
 import { ItemPedidoService } from '../item-pedido.service';
+import { ItemPedidoModel } from '../item-pedido.model';
+import { ItemPedidoDeleteComponent } from '../item-pedido-delete/item-pedido-delete.component';
 
 @Component({
   selector: 'app-item-pedido-list',
@@ -24,7 +26,16 @@ export class ItemPedidoListComponent implements OnInit{
 
   openCreateItemPedidoModel() {
 		const modalRef = this.modalService.open(ItemPedidoCreateUpdateComponent, { size: 'lg' });
-    
 	} 
+
+  openUpdateItemPedidoModal(itemPedido: ItemPedidoModel) {
+		const modalRef = this.modalService.open(ItemPedidoCreateUpdateComponent, { size: 'lg' });
+    modalRef.componentInstance.itemPedido = itemPedido;
+	}
+
+  openDeleteItemPedidoModal(itemPedido: ItemPedidoModel) {
+		const modalRef = this.modalService.open(ItemPedidoDeleteComponent,{ size: 'lg' });
+    modalRef.componentInstance.itemPedido = itemPedido;
+	}
 
 }

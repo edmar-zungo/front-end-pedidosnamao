@@ -1,16 +1,5 @@
 <div class="container mt-4 mb-4">
-  <h2 class="text-start fs-1">Itens de pedido</h2>
-
-  <div class="mb-3 d-flex justify-content-end">
-    <button type="button" class="btn btn-warning fw-semibold" (click)="openCreateItemPedidoModel()">
-      <i class="fa fa-plus" aria-hidden="true"></i>
-      Novo
-    </button>
-
-    <button type="button" class="btn btn-info ms-2 fw-semibold">
-      <i class="fa fa-refresh" aria-hidden="true"></i>
-    </button>
-  </div>
+  <h2 class="text-start fs-1">Adicionar item a pedido</h2>
 
   <div>
     @if(itemPedidoService.itensPedido().length !== 0){
@@ -27,7 +16,7 @@
                 <!-- <th scope="col">Total a pagar</th> -->
                 <!-- <th scope="col">Total pago</th> -->
                 <!-- <th scope="col">Total de troco</th> -->
-                <th></th>
+               <th></th>
               </tr>
             </thead>
 
@@ -37,12 +26,28 @@
                          <td>{{itemPedido.itemConsumo?.descricao}}</td>
                          <td>{{itemPedido.precoItemPedido}}</td>
                          <td>{{itemPedido.quantidadeItemConsumo}}</td>
-                         <td>{{itemPedido.pedido?.id}}</td>
+                         <td>{{itemPedido.pedido?.numero}}</td>
                          <!-- <td>{{pedido.deliver}}</td> -->
                          <!-- <td>{{pedido.totalPagar}}</td> -->
                          <!-- <td>{{pedido.totalPago}}</td> -->
                          <!-- <td>{{pedido.totalTroco}}</td> -->
-                         <td></td>               
+                         <td class="d-flex justify-content-end">
+                          <button
+                            type="button"
+                            class="btn btn-info btn-sm rounded-start"
+                            (click)="openUpdateItemPedidoModal(itemPedido)"
+                          >
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                          </button>
+            
+                          <button
+                            type="button"
+                            class="btn btn-danger btn-sm ms-1 rounded-end"
+                            (click)="openDeleteItemPedidoModal(itemPedido)"
+                          >
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>
+                        </td>              
                     </tr>
                 }
             </tbody>
@@ -53,5 +58,16 @@
             Nenhum Item de Pedido cadastrado. Adicione pedidos clicando no botão "Novo".
           </div>
     }
+</div>
+
+<div class="mb-3 d-flex justify-content-end">
+  <button type="button" class="btn btn-warning fw-semibold" (click)="openCreateItemPedidoModel()">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Novo
+  </button>
+
+  <button type="button" class="btn btn-info ms-2 fw-semibold" (click)="itemPedidoService.getItensPedido()">
+    <i class="fa fa-refresh" aria-hidden="true"></i>
+  </button>
 </div>
 </div>

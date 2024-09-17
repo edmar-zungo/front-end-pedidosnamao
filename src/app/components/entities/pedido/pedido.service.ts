@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { PedidoModel } from './pedido.model';
+import { EstadoPedido } from '../enums/estado-pedido.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class PedidoService {
 
   getOnePedido(pedidoId: string): Observable<PedidoModel>{
     return this.http.get<PedidoModel>(`${this.urlApi}/${pedidoId}`);
+  }
+
+  mudarEstadoPedido(pedido: PedidoModel): Observable<PedidoModel>{
+    return this.http.put<PedidoModel>(`${this.urlApi}/mudar-estado`, pedido);
   }
 
   updatePedido(pedido: PedidoModel): Observable<PedidoModel>{

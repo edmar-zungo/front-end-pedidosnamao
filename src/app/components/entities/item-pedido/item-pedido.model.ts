@@ -8,5 +8,5 @@ export interface ItemPedidoModel {
     precoItemPedido: number | null;
     desconto: number | null;
     descricao: string | null;
-    pedido: Pick<PedidoModel, 'id' | 'descricao' | 'estadoPedido'> | null;
+    pedido: Pick<PedidoModel, 'id' | 'numero' | 'estadoPedido'> | null;
 }

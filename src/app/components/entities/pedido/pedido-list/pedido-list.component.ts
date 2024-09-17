@@ -4,6 +4,9 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCreateUpdateComponent } from '../pedido-create-update/pedido-create-update.component';
 import { PedidoService } from '../pedido.service';
+import { Estado } from '../../enums/estado.enum';
+import { EstadoPedido } from '../../enums/estado-pedido.enum';
+import { PedidoModel } from '../pedido.model';
 
 @Component({
   selector: 'app-pedido-list',
@@ -32,7 +35,13 @@ export class PedidoListComponent implements OnInit{
   openCreatePedidoModel() {
 		const modalRef = this.modalService.open(PedidoCreateUpdateComponent, { size: 'lg' });
    
-	} 
+	}
+
+  fecharPedido(pedido: PedidoModel){
+    this.pedidoService.mudarEstadoPedido(pedido).subscribe(() => {
+      this.pedidoService.getPedidos();
+    })
+  }
   
 
 }

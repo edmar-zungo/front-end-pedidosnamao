@@ -39,6 +39,12 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.careegarRelacionamentos();
     this.criarFormulario();
+
+    
+
+    if(this.itemPedido != null){
+      this.preencheFormularioActualizacao(this.itemPedido);
+    }
   }
 
   careegarRelacionamentos() {
@@ -56,6 +62,18 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
       descricao: [''],
       pedido: [null, [Validators.required]],
     });
+  }
+
+  preencheFormularioActualizacao(itemPedido: ItemPedidoModel) {
+    this.itemPedidoForm.patchValue({
+      id: itemPedido.id,
+      itemConsumo: itemPedido.itemConsumo,
+      quantidadeItemConsumo: itemPedido.quantidadeItemConsumo,
+      precoItemPedido: itemPedido.precoItemPedido,
+      desconto: itemPedido.desconto,
+      descricao: itemPedido.descricao,
+      pedido: itemPedido.pedido
+    })
   }
 
   cancel() {
@@ -86,4 +104,6 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
       precoItemPedido: novoPreco
     })
   }
+
+
 }
