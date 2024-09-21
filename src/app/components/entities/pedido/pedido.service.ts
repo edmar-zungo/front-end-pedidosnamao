@@ -22,9 +22,9 @@ export class PedidoService {
     });
   }
 
-  savePedido(pedido: PedidoModel): Observable<PedidoModel>{
+  savePedido(): Observable<PedidoModel>{
     
-    return this.http.post<PedidoModel>(this.urlApi, pedido);
+    return this.http.post<PedidoModel>(this.urlApi, null);
   }
 
   getOnePedido(pedidoId: string): Observable<PedidoModel>{

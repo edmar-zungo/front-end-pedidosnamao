@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoCreateUpdateComponent } from '../pedido-create-update/pedido-create-update.component';
@@ -11,7 +11,7 @@ import { PedidoModel } from '../pedido.model';
 @Component({
   selector: 'app-pedido-list',
   standalone: true,
-  imports: [NgxCurrencyDirective],
+  imports: [NgxCurrencyDirective, RouterLink, RouterLinkActive],
   templateUrl: './pedido-list.component.html',
   styleUrl: './pedido-list.component.css'
 })
@@ -33,7 +33,11 @@ export class PedidoListComponent implements OnInit{
 
 
   openCreatePedidoModel() {
-		const modalRef = this.modalService.open(PedidoCreateUpdateComponent, { size: 'lg' });
+		// const modalRef = this.modalService.open(PedidoCreateUpdateComponent, { size: 'lg' });
+
+    this.pedidoService.savePedido().subscribe(pedidoResult => {
+      this.router.navigate(['adicionar-item-pedido/', pedidoResult.id]);
+    })
    
 	}
 

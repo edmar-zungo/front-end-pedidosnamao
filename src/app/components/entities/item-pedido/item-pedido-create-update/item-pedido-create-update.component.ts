@@ -29,6 +29,8 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
 
   itemPedido: ItemPedidoModel | null = null;
 
+  pedido: PedidoModel | null = null;
+
   router = inject(Router);
   formBuilder = inject(FormBuilder);
   activeModal = inject(NgbModal);
@@ -37,10 +39,9 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
   public pedidoService = inject(PedidoService);
 
   ngOnInit(): void {
+
     this.careegarRelacionamentos();
     this.criarFormulario();
-
-    
 
     if(this.itemPedido != null){
       this.preencheFormularioActualizacao(this.itemPedido);
@@ -60,7 +61,7 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
       precoItemPedido: [0, [Validators.required]],
       desconto: [0],
       descricao: [''],
-      pedido: [null, [Validators.required]],
+      pedido: [this.pedido, [Validators.required]],
     });
   }
 
@@ -84,12 +85,13 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
     this.itemPedido = this.itemPedidoForm.value;
     if (this.itemPedido?.id != null) {
       this.itemPedidoService.updateItemPedido(this.itemPedido).subscribe(() => {
-        this.itemPedidoService.getItensPedido();
+        this.itemPedidoService.getItensPedido(this.itemPedido?.pedido?.id!);
         this.cancel();
       });
-    } else {
+    } 
+    else {
       this.itemPedidoService.saveItemPedido(this.itemPedido!).subscribe(() => {
-        this.itemPedidoService.getItensPedido();
+        this.itemPedidoService.getItensPedido(this.itemPedido?.pedido?.id!);
         this.cancel();
       });
     }

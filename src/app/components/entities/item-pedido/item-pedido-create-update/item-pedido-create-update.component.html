@@ -1,6 +1,6 @@
 <div class="modal-header">
       <!-- <h4 class="modal-title">Editar cardápio</h4> -->
-      <h4 class="modal-title">Criar item de pedido</h4>
+      <h4 class="modal-title">Adidionar item ao pedido {{ pedido?.numero }}</h4>
   
 </div>
 
@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        @if(itemPedido == null){
+        @if(itemPedido == null && pedido == null){
             <div class="mb-3">
                 <label for="pedido" class="form-label">Pedido</label>
                     <select name="pedido" id="pedido" class="form-control" formControlName="pedido">

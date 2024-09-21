@@ -5,7 +5,7 @@
     <form [formGroup]="pedidoForm" (ngSubmit)="onSave()">
         <div class="mt-4 mb-4">
             <div class="row mb-3">
-                <div class="col-8">
+                <div class="">
                     <label for="mesa" class="form-label">Mesa</label>
                     <select name="mesa" id="mesa" class="form-control" formControlName="mesa">
                         <option [ngValue]="null"></option>
@@ -21,53 +21,60 @@
                 <label for="deliver" class="form-label mt-1">Entrega ?</label>
             </div>
 
-            
+            @if(pedidoForm.get(['deliver'])?.value == true){
             <div class="col-6 mb-3">
                 <label for="enderecoEntregaDetalhado" class="form-label">Endereço de entrega</label>
                 <textarea name="enderecoEntregaDetalhado" id="enderecoEntregaDetalhado" class="form-control"
                     formControlName="enderecoEntregaDetalhado"></textarea>
             </div>
-          
+            }
 
-            <div class="row mb-3">
-                
+
+            <!-- <div class="row mb-3">
+                @if(pedidoForm.get(['deliver'])?.value == true){
                 <div class="col-3">
                     <label for="valorEntrega" class="form-label">Valor pela entrega</label>
                     <div class="input-group">
-                    <input type="text" name="valorEntrega" id="valorEntrega" [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control"
-                        formControlName="valorEntrega" />
+                        <input type="text" name="valorEntrega" id="valorEntrega"
+                            [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control"
+                            formControlName="valorEntrega" />
                         <span class="input-group-text" id="basic-addon1">KZ</span>
                     </div>
                 </div>
-           
+                }
+
 
                 <div class="col-3">
                     <label for="totalPagar" class="form-label">Total a pagar</label>
                     <div class="input-group">
-                        
-                        <input type="text" name="totalPagar" id="totalPagar" [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control" formControlName="totalPagar" />
+
+                        <input type="text" name="totalPagar" id="totalPagar"
+                            [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control"
+                            formControlName="totalPagar" />
                         <span class="input-group-text" id="basic-addon1">KZ</span>
                     </div>
                 </div>
                 <div class="col-3">
                     <label for="totalPago" class="form-label">Total pago</label>
                     <div class="input-group">
-                    <input type="text" name="totalPago" id="totalPago" [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control"
-                        formControlName="totalPago" />
+                        <input type="text" name="totalPago" id="totalPago"
+                            [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control"
+                            formControlName="totalPago" />
                         <span class="input-group-text" id="basic-addon1">KZ</span>
-                </div>
+                    </div>
                 </div>
                 <div class="col-3">
                     <label for="totalPagar" class="form-label">Total de troco</label>
                     <div class="input-group">
-                    <input type="text" name="totalPago" id="totalPago" [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control"
-                        formControlName="totalPago" />
+                        <input type="text" name="totalPago" id="totalPago"
+                            [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" class="form-control"
+                            formControlName="totalPago" />
                         <span class="input-group-text" id="basic-addon1">KZ</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-    
+
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary me-2" (click)="cancel()">
@@ -75,8 +82,8 @@
                 Cancelar
             </button>
             <button type="submit" class="btn btn-warning" [disabled]="this.pedidoForm.invalid">
-                <i class="fa fa-save" aria-hidden="true"></i>
-                Salvar
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Item
             </button>
         </div>
     </form>
