@@ -22,15 +22,7 @@ export class ItemPedidoListComponent implements OnInit{
   modalService = inject(NgbModal);
   public itemPedidoService = inject(ItemPedidoService);
 
-  constructor(){
-    effect(() => {
-      alert(this.pedido()?.id)
-    })
-  }
-
-  ngOnInit(): void {
-    this.pedidoList();
-  }
+  ngOnInit(): void { }
 
   openCreateItemPedidoModel() {
 		const modalRef = this.modalService.open(ItemPedidoCreateUpdateComponent, { size: 'lg' });

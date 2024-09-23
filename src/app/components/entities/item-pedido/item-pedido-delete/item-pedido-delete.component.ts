@@ -22,7 +22,7 @@ export class ItemPedidoDeleteComponent {
 
   eliminar(itemPedidoId: string) {
     this.itemPedidoService.deleteItemPedido(itemPedidoId).subscribe(() => {
-      this.itemPedidoService.getItensPedido(itemPedidoId);
+      this.itemPedidoService.getItensPedido(this.itemPedido?.pedido?.id!);
     });
 
     this.cancel();

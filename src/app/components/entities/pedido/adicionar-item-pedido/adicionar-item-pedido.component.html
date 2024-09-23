@@ -1,2 +1,11 @@
-<h2 class="fw-bold">{{ pedido?.numero }}</h2>
-<app-item-pedido-list [pedido]="pedido"/>
+<div class="container mt-4 mb-4">
+  <h2 class="text-start fs-1 ms-2">{{ pedido?.numero }}</h2>
+  <div class="mb-3">
+    <app-item-pedido-list [pedido]="pedido" />
+  </div>
+  <div class="d-grid gap-2">
+    <button class="btn btn-success" type="button">
+      Finalizar <i class="fa fa-check ms-2" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

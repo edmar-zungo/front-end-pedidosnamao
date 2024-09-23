@@ -15,8 +15,8 @@ export class ItemPedidoService {
   constructor(private http: HttpClient){}
 
   getItensPedido(pedidoId: string){
-    this.http.get<ItemPedidoModel[]>(this.urlApi).subscribe(itensPedidoResult => {
-      this.itensPedido.set(itensPedidoResult.filter(x => x.pedido?.id === pedidoId));
+    this.http.get<ItemPedidoModel[]>(`${this.urlApi}/by-pedido/${pedidoId}`).subscribe(itensPedidoResult => {
+      this.itensPedido.set(itensPedidoResult);
     });
   }
 

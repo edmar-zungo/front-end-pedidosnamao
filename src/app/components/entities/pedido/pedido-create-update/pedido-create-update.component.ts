@@ -98,9 +98,10 @@ export class PedidoCreateUpdateComponent implements OnInit{
 
   save(){
     this.pedidoService.savePedido().subscribe(pedidoResult => {
+      this.router.navigate(['/adicionar-item-pedido', pedidoResult.id]);
       this.pedidoService.getPedidos();
        this.cancel();
-      this.router.navigate(['/adicionar-item-pedido', pedidoResult.id]);
+      
      });
   }
 

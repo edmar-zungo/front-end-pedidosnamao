@@ -91,8 +91,9 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
     } 
     else {
       this.itemPedidoService.saveItemPedido(this.itemPedido!).subscribe(() => {
-        this.itemPedidoService.getItensPedido(this.itemPedido?.pedido?.id!);
         this.cancel();
+        this.itemPedidoService.getItensPedido(this.itemPedido?.pedido?.id!);
+        
       });
     }
   }
