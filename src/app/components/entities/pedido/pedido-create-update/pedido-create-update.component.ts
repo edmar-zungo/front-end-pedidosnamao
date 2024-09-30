@@ -1,17 +1,14 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PedidoModel } from '../pedido.model';
-import { Estado } from '../../enums/estado.enum';
 import { EstadoPedido } from '../../enums/estado-pedido.enum';
 import { MesaModel } from '../../mesa/mesa.model';
 import { MesaService } from '../../mesa/mesa.service';
-import { Router, RouterLink } from '@angular/router';
-import { NgxCurrencyDirective, NgxCurrencyInputMode } from 'ngx-currency';
+import { Router } from '@angular/router';
+import { NgxCurrencyDirective } from 'ngx-currency';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoService } from '../pedido.service';
-import { PedidoListComponent } from '../pedido-list/pedido-list.component';
 import { ItemPedidoListComponent } from '../../item-pedido/item-pedido-list/item-pedido-list.component';
-import { ItemPedidoCreateUpdateComponent } from '../../item-pedido/item-pedido-create-update/item-pedido-create-update.component';
 import { PedidoDetaiComponent } from '../pedido-detai/pedido-detai.component';
 
 @Component({

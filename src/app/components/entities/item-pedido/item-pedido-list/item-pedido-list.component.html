@@ -1,5 +1,5 @@
-<div class="container mt-4 mb-4">
-  <h2 class="text-start fs-5">Adicionar item a pedido</h2>
+<div class="mt-4 mb-4">
+  <h2 class="text-start fs-5">Itens do pedido</h2>
 
   <div>
     @if(itemPedidoService.itensPedido().length !== 0){
@@ -46,7 +46,7 @@
         </table>
     }@else {
         <div class="alert alert-primary" role="alert">
-            Nenhum Item de Pedido adicionado. Adicione itens clicando no botão "Adicionar".
+            Nenhum item adicionado ao pedido. Adicione itens clicando no botão "Adicionar".
           </div>
     }
 </div>

@@ -1,11 +1,38 @@
 <div class="container mt-4 mb-4">
-  <h2 class="text-start fs-1 ms-2">{{ pedido?.numero }}</h2>
-  <div class="mb-3">
-    <app-item-pedido-list [pedido]="pedido" />
-  </div>
-  <div class="d-grid gap-2">
-    <button class="btn btn-success" type="button">
-      Finalizar <i class="fa fa-check ms-2" aria-hidden="true"></i>
-    </button>
-  </div>
+  <h2 class="text-start fs-1">{{ pedido?.numero }}</h2>
+  <form [formGroup]="pedidoForm">
+    <div class="mt-4 mb-4 col-11">
+      <div class="row mb-3">
+        
+          <div>
+            <label for="mesa" class="form-label">Mesa</label>
+            <select name="mesa" id="mesa" class="form-control" formControlName="mesa">
+              <option [ngValue]="null"></option>
+              @for(mesa of mesaService.mesas(); track $index){
+              <option [ngValue]="mesa">{{ mesa.descricao }}</option>
+              }
+            </select>
+          </div>
+      
+      </div>
+      <div class="mb-3 d-flex align-items-center">
+        <input type="checkbox" name="deliver" id="deliver" class="form-check me-1" formControlName="deliver" />
+        <label for="deliver" class="form-label mt-1">Entrega ?</label>
+      </div>
+      
+        <app-item-pedido-list [pedido]="pedido" />
+     
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-success rounded fw-bold" type="button">
+          Finalizar o pedido
+            <i class="fa fa-check" aria-hidden="true">
+
+            </i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+
 </div>
