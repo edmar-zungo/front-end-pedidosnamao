@@ -1,12 +1,12 @@
 <div class="container mt-4 mb-4">
   <h2 class="text-start fs-1">{{ pedido?.numero }}</h2>
-  <form [formGroup]="pedidoForm">
+  <form [formGroup]="pedidoForm" (ngSubmit)="onSave()">
     <div class="mt-4 mb-4 col-11">
       <div class="row mb-3">
         
           <div>
             <label for="mesa" class="form-label">Mesa</label>
-            <select name="mesa" id="mesa" class="form-control" formControlName="mesa">
+            <select name="mesa" id="mesa" class="form-control" formControlName="mesa" [(ngModel)]="mesa">
               <option [ngValue]="null"></option>
               @for(mesa of mesaService.mesas(); track $index){
               <option [ngValue]="mesa">{{ mesa.descricao }}</option>
@@ -16,7 +16,7 @@
       
       </div>
       <div class="mb-3 d-flex align-items-center">
-        <input type="checkbox" name="deliver" id="deliver" class="form-check me-1" formControlName="deliver" />
+        <input type="checkbox" name="deliver" id="deliver" class="form-check me-1" formControlName="deliver" [(ngModel)]="disable"/>
         <label for="deliver" class="form-label mt-1">Entrega ?</label>
       </div>
       
@@ -24,7 +24,7 @@
      
 
       <div class="d-grid gap-2">
-        <button class="btn btn-success rounded fw-bold" type="button">
+        <button class="btn btn-success rounded fw-bold" type="submit">
           Finalizar o pedido
             <i class="fa fa-check" aria-hidden="true">
 

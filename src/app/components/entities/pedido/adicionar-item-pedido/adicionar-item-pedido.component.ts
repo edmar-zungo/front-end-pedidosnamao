@@ -21,7 +21,9 @@ export class AdicionarItemPedidoComponent implements OnInit{
   pedido: PedidoModel | null = null;
   pedidoForm!: FormGroup;
   mesas: MesaModel[] = [];
+  
   mesa: MesaModel | null = null;
+  disable: boolean = false;
 
   activatedRoute = inject(ActivatedRoute);
   route = inject(Router);
@@ -55,6 +57,19 @@ export class AdicionarItemPedidoComponent implements OnInit{
 
   carregaMesas(){
     this.mesaService.getMesas();
+ }
+
+ onSave() {
+
+  this.pedido!.mesa = this.mesa;
+  this.pedido!.deliver = this.disable;
+
+  console.log(JSON.stringify(this.pedido));
+
+    if (this.pedido?.id != null) {
+      this.pedidoService.updatePedido(this.pedido).subscribe();
+
+    }
  }
 
 }
