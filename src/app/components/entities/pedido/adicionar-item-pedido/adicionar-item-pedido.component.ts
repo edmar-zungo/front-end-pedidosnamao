@@ -8,11 +8,12 @@ import { ItemPedidoService } from '../../item-pedido/item-pedido.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MesaModel } from '../../mesa/mesa.model';
 import { MesaService } from '../../mesa/mesa.service';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-adicionar-item-pedido',
   standalone: true,
-  imports: [ItemPedidoListComponent, ReactiveFormsModule],
+  imports: [ItemPedidoListComponent, ReactiveFormsModule, NgxCurrencyDirective],
   templateUrl: './adicionar-item-pedido.component.html',
   styleUrl: './adicionar-item-pedido.component.css'
 })
@@ -24,6 +25,7 @@ export class AdicionarItemPedidoComponent implements OnInit{
   
   mesa: MesaModel | null = null;
   disable: boolean = false;
+  totalPagar: number | null = null;
 
   activatedRoute = inject(ActivatedRoute);
   route = inject(Router);
@@ -51,7 +53,8 @@ export class AdicionarItemPedidoComponent implements OnInit{
     this.pedidoForm = this.formBuilder.group({
       id: [],
       mesa: [null],
-      deliver: [false]
+      deliver: [false],
+      totalPagar: [0]
     });
   }
 
@@ -64,12 +67,16 @@ export class AdicionarItemPedidoComponent implements OnInit{
   this.pedido!.mesa = this.mesa;
   this.pedido!.deliver = this.disable;
 
-  console.log(JSON.stringify(this.pedido));
-
     if (this.pedido?.id != null) {
-      this.pedidoService.updatePedido(this.pedido).subscribe();
+      this.pedidoService.updatePedido(this.pedido).subscribe(() => {
+        this.goToPedidosList();
+      });
 
     }
+ }
+
+ goToPedidosList(){
+  this.route.navigate(['/pedidos']);
  }
 
 }

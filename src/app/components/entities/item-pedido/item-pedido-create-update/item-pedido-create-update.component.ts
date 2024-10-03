@@ -30,6 +30,7 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
   itemPedido: ItemPedidoModel | null = null;
 
   pedido: PedidoModel | null = null;
+  
 
   router = inject(Router);
   formBuilder = inject(FormBuilder);
@@ -90,9 +91,12 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
       });
     } 
     else {
-      this.itemPedidoService.saveItemPedido(this.itemPedido!).subscribe(() => {
+      this.itemPedidoService.saveItemPedido(this.itemPedido!).subscribe(itemPedidoResult => {      
         this.cancel();
-        this.itemPedidoService.getItensPedido(this.itemPedido?.pedido?.id!);
+        this.pedidoService.calcularTotalPedido(itemPedidoResult.pedido?.id!).subscribe(pedidoResult => {
+          this.pedido = pedidoResult;
+        });
+        this.itemPedidoService.getItensPedido(itemPedidoResult.pedido?.id!);
         
       });
     }

@@ -1,6 +1,6 @@
 <div class="container mt-4 mb-4">
   <h2 class="text-start fs-1">{{ pedido?.numero }}</h2>
-  <form [formGroup]="pedidoForm" (ngSubmit)="onSave()">
+  <form [formGroup]="pedidoForm">
     <div class="mt-4 mb-4 col-11">
       <div class="row mb-3">
         
@@ -20,11 +20,18 @@
         <label for="deliver" class="form-label mt-1">Entrega ?</label>
       </div>
       
-        <app-item-pedido-list [pedido]="pedido" />
+        <div>
+          <app-item-pedido-list [pedido]="pedido" />
+        </div>
+
+        <div class="d-flex justify-content-end align-items-end float-end flex-column mb-3 col-2">
+          <label for="totalPagar" class="form-label">Total à pagar</label>
+          <input type="text" name="totalPagar" id="totalPagar" class="form-control" formControlName="totalPagar" [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" readonly [(ngModel)]="totalPagar">
+        </div>
      
 
       <div class="d-grid gap-2">
-        <button class="btn btn-success rounded fw-bold" type="submit">
+        <button class="btn btn-success rounded fw-bold" type="button" (click)="onSave()">
           Finalizar o pedido
             <i class="fa fa-check" aria-hidden="true">
 

@@ -1,7 +1,7 @@
 <div class="container">
   @if(existeItens()){
     @if(existePratosPrincipais()){
-      <div class="tipo-item mb-2">PRINCIPAL</div>
+      <div class="tipo-item mb-2">PRINCIPAIS</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
         @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL' && item.estadoItemConsumo === 'DISPONIVEL'){
@@ -19,7 +19,7 @@
      }
   
      @if(existePratosEntrada()){
-      <div class="tipo-item mb-2">ENTRADA</div>
+      <div class="tipo-item mb-2">ENTRADAS</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
         @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'ENTRADA' && item.estadoItemConsumo === 'DISPONIVEL'){
@@ -38,7 +38,7 @@
   
   
      @if(existePratosSobremesa()){
-      <div class="tipo-item mb-2">SOBRE MESA</div>
+      <div class="tipo-item mb-2">SOBRE MESAS</div>
       <ol class="list-group list-group-numbered mb-3">
         @for (item of itemConsumoService.itensConsumo(); track $index) {
         @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'SOBRE_MESA' && item.estadoItemConsumo === 'DISPONIVEL'){

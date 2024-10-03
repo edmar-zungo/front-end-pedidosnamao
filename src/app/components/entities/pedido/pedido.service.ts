@@ -31,6 +31,10 @@ export class PedidoService {
     return this.http.get<PedidoModel>(`${this.urlApi}/${pedidoId}`);
   }
 
+  calcularTotalPedido(pedidoId: string): Observable<PedidoModel>{
+    return this.http.post<PedidoModel>(`${this.urlApi}/calculaTotalPagar/${pedidoId}`, null);
+  }
+
   mudarEstadoPedido(pedido: PedidoModel): Observable<PedidoModel>{
     return this.http.put<PedidoModel>(`${this.urlApi}/mudar-estado`, pedido);
   }
