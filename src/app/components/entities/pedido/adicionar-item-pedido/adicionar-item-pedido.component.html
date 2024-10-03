@@ -26,7 +26,7 @@
 
         <div class="d-flex justify-content-end align-items-end float-end flex-column mb-3 col-2">
           <label for="totalPagar" class="form-label">Total à pagar</label>
-          <input type="text" name="totalPagar" id="totalPagar" class="form-control" formControlName="totalPagar" [currencyMask]="{prefix: '', suffix: '', thousands: '.', decimal: ','}" readonly [(ngModel)]="totalPagar">
+          <input type="text" name="totalPagar" id="totalPagar" class="form-control" formControlName="totalPagar" readonly [value]="pedidoService.pedidoRead()?.totalPagar">
         </div>
      
 

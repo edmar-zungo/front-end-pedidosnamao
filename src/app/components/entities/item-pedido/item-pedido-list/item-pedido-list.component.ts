@@ -7,17 +7,20 @@ import { ItemPedidoService } from '../item-pedido.service';
 import { ItemPedidoModel } from '../item-pedido.model';
 import { ItemPedidoDeleteComponent } from '../item-pedido-delete/item-pedido-delete.component';
 import { PedidoModel } from '../../pedido/pedido.model';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-item-pedido-list',
   standalone: true,
-  imports: [],
+  imports: [NgxCurrencyDirective],
   templateUrl: './item-pedido-list.component.html',
   styleUrl: './item-pedido-list.component.css'
 })
 export class ItemPedidoListComponent implements OnInit{
 
   pedido = input<PedidoModel | null>(null);
+
+  totalPagar: number | null = null;
 
   modalService = inject(NgbModal);
   public itemPedidoService = inject(ItemPedidoService);

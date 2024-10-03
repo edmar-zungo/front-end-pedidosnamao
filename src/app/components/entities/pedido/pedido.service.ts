@@ -12,7 +12,8 @@ export class PedidoService {
 
   urlApi = `${environment.apiUrl}/pedidos`;
   
-  pedidos = signal<PedidoModel[]>([]); 
+  pedidos = signal<PedidoModel[]>([]);
+  pedidoRead = signal<PedidoModel | null>(null);
 
   constructor(private http: HttpClient){}
 
@@ -31,8 +32,10 @@ export class PedidoService {
     return this.http.get<PedidoModel>(`${this.urlApi}/${pedidoId}`);
   }
 
-  calcularTotalPedido(pedidoId: string): Observable<PedidoModel>{
-    return this.http.post<PedidoModel>(`${this.urlApi}/calculaTotalPagar/${pedidoId}`, null);
+  calcularTotalPedido(pedidoId: string): void{
+     this.http.get<PedidoModel>(`${this.urlApi}/calculaTotalPagar/${pedidoId}`).subscribe(pedidoResult => {
+      this.pedidoRead.set(pedidoResult);
+     });
   }
 
   mudarEstadoPedido(pedido: PedidoModel): Observable<PedidoModel>{
