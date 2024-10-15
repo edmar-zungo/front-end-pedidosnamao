@@ -7,13 +7,13 @@
         Novo
       </button>
   
-      <button type="button" class="btn btn-info ms-2 fw-semibold" (click)="this.pedidoService.getPedidos()">
+      <button type="button" class="btn btn-info ms-2 fw-semibold" (click)="this.pedidoService.getPedidos(pageNumber, pageItens)">
         <i class="fa fa-refresh" aria-hidden="true"></i>
       </button>
     </div>
 
     <div>
-        @if(pedidoService.pedidos().length !== 0){
+        @if(pedidoService.pedidos()?.pedidoDTOList!.length !== 0){
             <table class="table table-striped">
 
                 <thead>
@@ -32,7 +32,7 @@
                 </thead>
     
                 <tbody>
-                    @for(pedido of pedidoService.pedidos(); track $index){
+                    @for(pedido of pedidoService.pedidos()?.pedidoDTOList! | paginate: { itemsPerPage: pageItens, currentPage: pageNumber, totalItems:pedidoService.pedidos()?.totalItens}; track $index){
                         <tr>
                              <td>{{pedido.numero}}</td>
                              <!-- <td>{{pedido.mesa?.descricao}}</td> -->
@@ -59,6 +59,12 @@
                 </tbody>
     
             </table>
+            <pagination-controls 
+            (pageChange)="pageChanged($event)"
+            previousLabel=""
+            nextLabel=""
+            [maxSize]="3"
+            class="d-flex justify-content-center mt-4"></pagination-controls>
         }@else {
             <div class="alert alert-primary" role="alert">
                 Nenhum Pedido cadastrado. Adicione pedidos clicando no botão "Novo".

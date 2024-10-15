@@ -27,6 +27,9 @@ export class PedidoCreateUpdateComponent implements OnInit{
 
   mesa: MesaModel | null = null;
 
+  pageNumber = 1;
+  pageItens = 5;
+
   router = inject(Router);
   pedidoService = inject(PedidoService);
   formBuilder = inject(FormBuilder);
@@ -96,7 +99,7 @@ export class PedidoCreateUpdateComponent implements OnInit{
   save(){
     this.pedidoService.savePedido().subscribe(pedidoResult => {
       this.router.navigate(['/adicionar-item-pedido', pedidoResult.id]);
-      this.pedidoService.getPedidos();
+      this.pedidoService.getPedidos(this.pageNumber, this.pageItens);
        this.cancel();
       
      });

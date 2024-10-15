@@ -30,6 +30,9 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
   itemPedido: ItemPedidoModel | null = null;
 
   pedido: PedidoModel | null = null;
+
+  pageNumber = 1;
+  pageItens = 5;
   
 
   router = inject(Router);
@@ -51,7 +54,7 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
 
   careegarRelacionamentos() {
     this.itemCosnumoService.getItensConsumo();
-    this.pedidoService.getPedidos();
+    this.pedidoService.getPedidos(this.pageNumber, this.pageItens);
   }
 
   criarFormulario() {

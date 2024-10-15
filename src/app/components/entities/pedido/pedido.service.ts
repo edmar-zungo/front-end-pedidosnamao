@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { PedidoModel } from './pedido.model';
-import { EstadoPedido } from '../enums/estado-pedido.enum';
+import { PedidoPageModel } from './pedido-page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +12,14 @@ export class PedidoService {
 
   urlApi = `${environment.apiUrl}/pedidos`;
   
-  pedidos = signal<PedidoModel[]>([]);
+  pedidos = signal<PedidoPageModel | null>(null);
   pedidoRead = signal<PedidoModel | null>(null);
 
   constructor(private http: HttpClient){}
 
-  getPedidos(){
-    this.http.get<PedidoModel[]>(this.urlApi).subscribe(pedidosResult => {
+  getPedidos(pageNumber: number, pageItens: number){
+    pageNumber = pageNumber - 1;
+    this.http.get<PedidoPageModel>(this.urlApi, {params: {pageNumber, pageItens}}).subscribe(pedidosResult => {
       this.pedidos.set(pedidosResult);
     });
   }

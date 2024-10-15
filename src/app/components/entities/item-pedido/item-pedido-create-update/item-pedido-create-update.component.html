@@ -41,7 +41,7 @@
                 <label for="pedido" class="form-label">Pedido</label>
                     <select name="pedido" id="pedido" class="form-control" formControlName="pedido">
                         <option [ngValue]="null"></option>
-                        @for(pedido of pedidoService.pedidos();  track $index){
+                        @for(pedido of pedidoService.pedidos()?.pedidoDTOList;  track $index){
                             <option [ngValue]="pedido">{{pedido.descricao}}</option>
                         }
                     </select>
