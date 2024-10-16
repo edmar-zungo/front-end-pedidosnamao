@@ -28,14 +28,7 @@ export class PedidoListComponent implements OnInit{
     this.pedidoService.getPedidos(this.pageNumber, this.pageItens);
   }
 
-  goToCreateUpdateComponent(){
-    this.router.navigate(['/pedidos/new']);
-  }
-
-
-  openCreatePedidoModel() {
-		// const modalRef = this.modalService.open(PedidoCreateUpdateComponent, { size: 'lg' });
-
+  createPedido() {
     this.pedidoService.savePedido().subscribe(pedidoResult => {
       this.router.navigate(['adicionar-item-pedido/', pedidoResult.id]);
     })

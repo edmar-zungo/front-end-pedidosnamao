@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CardapioService } from '../cardapio.service';
 import { CardapioModel } from '../cardapio.model';
 import { ItemConsumoListComponent } from '../../item-consumo/item-consumo-list/item-consumo-list.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemConsumoCreateUpdateComponent } from '../../item-consumo/item-consumo-create-update/item-consumo-create-update.component';
 import { ItemConsumoService } from '../../item-consumo/item-consumo.service';
+import { PedidoService } from '../../pedido/pedido.service';
 
 @Component({
   selector: 'app-cardapio-detail',
@@ -20,7 +21,9 @@ export class CardapioDetailComponent implements OnInit{
 
   activatedRoute = inject(ActivatedRoute);
   cardapioService = inject(CardapioService);
+  pedidoService = inject(PedidoService);
   itemConsumoService = inject(ItemConsumoService);
+  route = inject(Router);
 
   ngOnInit(): void {
     this.carregaCardapioEItensConsumoCardapio();
@@ -32,6 +35,10 @@ export class CardapioDetailComponent implements OnInit{
       this.cardapio = cardapioResult;
       this.itemConsumoService.getAllItensConsumoPorCardapio(this.cardapio.id!);
     })
+  }
+
+  back(){
+    this.route.navigate(['/cardapios']);
   }
 
 }

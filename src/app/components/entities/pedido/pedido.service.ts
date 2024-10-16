@@ -1,9 +1,10 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { PedidoModel } from './pedido.model';
 import { PedidoPageModel } from './pedido-page.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class PedidoService {
   
   pedidos = signal<PedidoPageModel | null>(null);
   pedidoRead = signal<PedidoModel | null>(null);
+
+  router = inject(Router);
 
   constructor(private http: HttpClient){}
 
@@ -50,4 +53,11 @@ export class PedidoService {
   deletePedido(pedidoId: string): Observable<string>{
    return this.http.delete<string>(`${this.urlApi}/${pedidoId}`);
   }
+
+  createPedido() {
+    this.savePedido().subscribe(pedidoResult => {
+      this.router.navigate(['adicionar-item-pedido/', pedidoResult.id]);
+    })
+   
+	}
 }

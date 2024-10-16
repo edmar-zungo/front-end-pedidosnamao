@@ -23,3 +23,8 @@
 .linkItem{
      color: #ffa42c;
 }
+
+.novoItemButton{ 
+     border: 1px solid #fbfbfb;
+     background-color: #ffa42c;
+}
