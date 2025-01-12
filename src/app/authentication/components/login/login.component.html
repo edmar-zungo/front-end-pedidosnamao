@@ -1,0 +1,48 @@
+<div class="content">
+
+    <div class="text-center mb-5">
+        <h2> PEDIDOS NA MÃO </h2>
+    </div>
+    
+    <div class="container-fluid card login-form">
+        <h3 class="text-center mt-3">Login</h3>
+        <hr />
+    
+        @if(errorsMsg.length){
+        <div class="alert alert-danger" role="alert">
+            @for ( msg of errorsMsg; track $index) {
+            <p>{{ msg }}</p>
+            }
+        </div>
+        }
+    
+        <div class="mb-3">
+            <label for="username" class="form-label">Nome de usuário</label>
+            <input [(ngModel)]="loginForm.username" type="text" name="username" id="username" placeholder="username"
+                class="form-control" />
+        </div>
+    
+        <div class="mb-4">
+            <label for="password" class="form-label">Senha</label>
+            <input [(ngModel)]="loginForm.password" type="password" name="password" id="password" placeholder="senha"
+                class="form-control" />
+        </div>
+    
+        <div class="d-flex flex-column justify-content-center mb-3">
+                
+            <button type="button" class="btn btn-lg btn-primary text-button rounded-2" (click)="login()">
+                <i class="fa fa-sign-in-alt" aria-hidden="true">&nbsp;Entrar</i>
+            </button>
+    
+    
+            <div class="d-flex align-items-center justify-content-center">
+                Não tem uma conta?
+                <button type="button" class="btn btn-link ps-1">
+                    Registrar-se
+                </button>
+            </div>
+        
+        </div>
+    </div>
+
+</div>

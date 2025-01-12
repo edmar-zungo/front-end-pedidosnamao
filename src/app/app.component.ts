@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -12,4 +12,5 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 })
 export class AppComponent {
   title = 'pedidosnamao';
+  login = input<boolean>(false);
 }

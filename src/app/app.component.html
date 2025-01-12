@@ -1,3 +1,5 @@
-<app-navbar />
+@if (login()) {
+    <app-navbar />
+}
 <router-outlet />
 <app-footer />

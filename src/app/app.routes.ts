@@ -9,8 +9,11 @@ import { PedidoCreateUpdateComponent } from './components/entities/pedido/pedido
 import { ItemPedidoListComponent } from './components/entities/item-pedido/item-pedido-list/item-pedido-list.component';
 import { PedidoDetaiComponent } from './components/entities/pedido/pedido-detai/pedido-detai.component';
 import { AdicionarItemPedidoComponent } from './components/entities/pedido/adicionar-item-pedido/adicionar-item-pedido.component';
+import { LoginComponent } from './authentication/components/login/login.component';
 
 export const routes: Routes = [
+     {path: '', pathMatch: 'full', redirectTo: 'login'},
+     { path: 'login', component: LoginComponent },
      { path: 'mesas', component: MesaListComponent },
      { path: 'cardapios', component: CardapioListComponent },
      { path: 'cardapios/:cardapioId', component: CardapioDetailComponent },
