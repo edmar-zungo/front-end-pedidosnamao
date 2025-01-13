@@ -1,0 +1,12 @@
+.content{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.login-form{ 
+    
+    width: 500px !important;
+}
+
+.text-button{
+    font-size: medium;
+}

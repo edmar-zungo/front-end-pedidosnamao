@@ -1,1 +1,54 @@
-<p>register works!</p>
+<div class="content">
+
+    <div class="text-center mb-5">
+        <h2> PEDIDOS NA MÃO </h2>
+    </div>
+    
+    <div class="container-fluid card login-form">
+        <h3 class="text-center mt-3">Registrar usuário</h3>
+        <hr />
+    
+        @if(errorsMsg.length){
+            @for ( msg of errorsMsg; track $index) {
+        <div class="alert alert-danger ps-3 p-0" role="alert">
+            
+            <p class="pt-3">{{ msg }}</p>
+           
+        </div>
+    }
+        }
+    
+        <div class="mb-3">
+            <label for="username" class="form-label">Nome de usuário</label>
+            <input [(ngModel)]="registerForm.username" type="text" name="username" id="username" placeholder="username"
+                class="form-control" />
+        </div>
+    
+        <div class="mb-4">
+            <label for="password" class="form-label">Senha</label>
+            <input [(ngModel)]="registerForm.password" type="password" name="password" id="password" placeholder="senha"
+                class="form-control" />
+        </div>    
+        <div class="mb-4">
+            <label for="password" class="form-label">Email</label>
+            <input [(ngModel)]="registerForm.email" type="email" name="email" id="email" placeholder="meuemail@mail.com"
+                class="form-control" />
+        </div>
+    
+        <div class="d-flex flex-column justify-content-center mb-3">
+                
+            <button type="button" class="btn btn-lg btn-primary text-button rounded-2" (click)="register()">
+                Registrar            </button>
+    
+    
+            <div class="d-flex align-items-center justify-content-center">
+                Já tem uma conta?
+                <button type="button" class="btn btn-link ps-1" (click)="redirectToLogin()">
+                    Entrar
+                </button>
+            </div>
+        
+        </div>
+    </div>
+
+</div>

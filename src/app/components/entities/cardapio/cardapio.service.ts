@@ -1,8 +1,9 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { CardapioModel } from './cardapio.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ExposeTokenService } from '../../shared/expose-token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,16 @@ export class CardapioService {
 
   urlApi = `${environment.apiUrl}/cardapios`;
   
+
   cardapios = signal<CardapioModel[]>([]); 
 
-  constructor(private http: HttpClient){}
+  protected readonly http = inject(HttpClient);
+  protected readonly exposeTokenService = inject(ExposeTokenService);
+
+  headers = this.exposeTokenService.exposeToken();
 
   getCardapios(){
-    this.http.get<CardapioModel[]>(this.urlApi).subscribe(cardapiosResult => {
+    this.http.get<CardapioModel[]>(this.urlApi, {headers: this.headers}).subscribe(cardapiosResult => {
       this.cardapios.set(cardapiosResult);
     });
   }

@@ -5,6 +5,7 @@ import { RegistrationRequestModel } from './models/registration-request.Model';
 import { Observable } from 'rxjs';
 import { AuthenticationRequestModel } from './models/authentication-request.model';
 import { AuthenticationResponseModel } from './models/authentication-response.model';
+import { RegistrationResponseModel } from './models/registration-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,8 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient){}
 
-  registrarUsuario(registerForm: RegistrationRequestModel): Observable<string>{
-    return this.http.post<string>(`${this.urlApi}/register`, registerForm);
+  registrarUsuario(registerForm: RegistrationRequestModel): Observable<RegistrationResponseModel>{
+    return this.http.post<RegistrationResponseModel>(`${this.urlApi}/register`, registerForm);
   }
 
   login(loginForm: AuthenticationRequestModel): Observable<AuthenticationResponseModel>{

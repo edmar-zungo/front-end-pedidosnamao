@@ -10,9 +10,9 @@
     
         @if(errorsMsg.length){
             @for ( msg of errorsMsg; track $index) {
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger ps-3 p-0" role="alert">
             
-            <p>{{ msg }}</p>
+            <p class="pt-3">{{ msg }}</p>
            
         </div>
     }
@@ -33,13 +33,12 @@
         <div class="d-flex flex-column justify-content-center mb-3">
                 
             <button type="button" class="btn btn-lg btn-primary text-button rounded-2" (click)="login()">
-                <i class="fa fa-sign-in-alt" aria-hidden="true">&nbsp;Entrar</i>
-            </button>
+                Entrar            </button>
     
     
             <div class="d-flex align-items-center justify-content-center">
                 Não tem uma conta?
-                <button type="button" class="btn btn-link ps-1">
+                <button type="button" class="btn btn-link ps-1" (click)="redirectToRegister()">
                     Registrar-se
                 </button>
             </div>
