@@ -9,11 +9,13 @@
         <hr />
     
         @if(errorsMsg.length){
-        <div class="alert alert-danger" role="alert">
             @for ( msg of errorsMsg; track $index) {
+        <div class="alert alert-danger" role="alert">
+            
             <p>{{ msg }}</p>
-            }
+           
         </div>
+    }
         }
     
         <div class="mb-3">

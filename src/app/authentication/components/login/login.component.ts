@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { AuthenticationRequestModel } from '../../models/authentication-request.model';
 import { AuthenticationService } from '../../authentication.service';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,11 @@ export class LoginComponent {
         localStorage.setItem('token', res.token);
       },
       error: (err) => {
-        console.log(err);
+       if(err.error.validationErrors){
+        this.errorsMsg = err.error.validationErrors;
+       } else {
+        this.errorsMsg.push(err.error.error);
+       }
       }
     })
 
