@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemConsumoCreateUpdateComponent } from '../item-consumo-create-update/item-consumo-create-update.component';
 import { ItemConsumoDetailsComponent } from '../item-consumo-details/item-consumo-details.component';
 import { ItemConsumoModel } from '../item-consumo.model';
+import { ItemPedidoService } from '../../item-pedido/item-pedido.service';
 
 @Component({
   selector: 'app-item-consumo-list',
@@ -19,6 +20,7 @@ export class ItemConsumoListComponent implements OnInit {
   cardapio = input<CardapioModel | null>();
 
   modalService = inject(NgbModal)
+  itemPedidoService = inject(ItemPedidoService)
 
   constructor(public itemConsumoService: ItemConsumoService) {
    
@@ -57,13 +59,6 @@ export class ItemConsumoListComponent implements OnInit {
     return true;
   }
 
-  // existeBebida(): boolean {
-  //   const tamanhoFilter = this.itemConsumoService.itensConsumo().filter(x => x.tipoItemConsumo === 'BEBIDA').length;
-  //   if (tamanhoFilter === 0) {
-  //     return false;
-  //   }
-  //   return true;
-  // }
   existeBebidaAlcoolica(): boolean {
     const tamanhoFilter = this.itemConsumoService.itensConsumo().filter(x => x.tipoBebida === 'ALCOOLICA').length;
     if (tamanhoFilter === 0) {
@@ -95,5 +90,11 @@ export class ItemConsumoListComponent implements OnInit {
     modalRef.componentInstance.itemConsumo = itemConsumo;
     
 	}
+
+  adicionarItem(item: ItemConsumoModel) {
+    this.itemPedidoService.adicionarItemPedido(item).subscribe(resp => {
+      this.itemPedidoService.openUpdateItemPedidoModal(resp);
+    })
+  }
 
 }

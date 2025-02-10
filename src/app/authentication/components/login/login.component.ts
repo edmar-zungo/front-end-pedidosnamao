@@ -1,4 +1,4 @@
-import { Component, inject, NgModule } from '@angular/core';
+import { Component, inject, NgModule, OnInit } from '@angular/core';
 import { AuthenticationRequestModel } from '../../models/authentication-request.model';
 import { AuthenticationService } from '../../authentication.service';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
 
   loginForm: AuthenticationRequestModel = {password: '', username: ''};
@@ -20,15 +20,23 @@ export class LoginComponent {
 
   protected readonly authenticationService = inject(AuthenticationService);
   protected readonly router = inject(Router);
+
+  ngOnInit(): void {
+    localStorage.removeItem('token');
+  }
+
   login(){
     this.errorsMsg = [];
 
     this.authenticationService.login(this.loginForm).subscribe( {
       next: (res) => {
+        console.log(this.loginForm);
         localStorage.setItem('token', res.token);
+        this.authenticationService.Accountlogin.set(true);
         this.router.navigate(['cardapios']);
       },
       error: (err) => {
+        
        if(err.error.validationErrors){
         this.errorsMsg = err.error.validationErrors;
        } else {

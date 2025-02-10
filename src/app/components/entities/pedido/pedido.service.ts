@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment.development';
 import { PedidoModel } from './pedido.model';
 import { PedidoPageModel } from './pedido-page.model';
 import { Router } from '@angular/router';
+import { ItemPedidoModel } from '../item-pedido/item-pedido.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class PedidoService {
   
   pedidos = signal<PedidoPageModel | null>(null);
   pedidoRead = signal<PedidoModel | null>(null);
+
+  itemsPedido: ItemPedidoModel[] = [];
 
   router = inject(Router);
 

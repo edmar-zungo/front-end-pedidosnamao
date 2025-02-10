@@ -11,17 +11,15 @@ import { ExposeTokenService } from '../../shared/expose-token.service';
 export class CardapioService {
 
   urlApi = `${environment.apiUrl}/cardapios`;
-  
-
+  token = localStorage.getItem('token')!;
   cardapios = signal<CardapioModel[]>([]); 
 
   protected readonly http = inject(HttpClient);
   protected readonly exposeTokenService = inject(ExposeTokenService);
 
-  headers = this.exposeTokenService.exposeToken();
 
   getCardapios(){
-    this.http.get<CardapioModel[]>(this.urlApi, {headers: this.headers}).subscribe(cardapiosResult => {
+    this.http.get<CardapioModel[]>(this.urlApi).subscribe(cardapiosResult => {
       this.cardapios.set(cardapiosResult);
     });
   }

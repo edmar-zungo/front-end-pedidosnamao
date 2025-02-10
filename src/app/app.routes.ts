@@ -11,19 +11,21 @@ import { PedidoDetaiComponent } from './components/entities/pedido/pedido-detai/
 import { AdicionarItemPedidoComponent } from './components/entities/pedido/adicionar-item-pedido/adicionar-item-pedido.component';
 import { LoginComponent } from './authentication/components/login/login.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
+import { AuthGuard } from './components/shared/auth-guard.guard';
+
 
 export const routes: Routes = [
      {path: '', pathMatch: 'full', redirectTo: 'login'},
      { path: 'login', component: LoginComponent },
      { path: 'register', component: RegisterComponent },
-     { path: 'mesas', component: MesaListComponent },
-     { path: 'cardapios', component: CardapioListComponent },
-     { path: 'cardapios/:cardapioId', component: CardapioDetailComponent },
-     { path: 'itens-consumo', component: ItemConsumoListComponent },
-     { path: 'itens-consumo/:itemConsumoId', component: ItemConsumoDetailsComponent },
-     { path: 'itens-pedido', component: ItemPedidoListComponent },
-     { path: 'pedidos', component: PedidoListComponent },
-     { path: 'pedidos/new', component: PedidoCreateUpdateComponent },
-     { path: 'pedidos/detail', component: PedidoDetaiComponent },
-     { path: 'adicionar-item-pedido/:pedidoId', component: AdicionarItemPedidoComponent }
+     { path: 'mesas', component: MesaListComponent},
+     { path: 'cardapios', component: CardapioListComponent},
+     { path: 'cardapios/:cardapioId', component: CardapioDetailComponent},
+     { path: 'itens-consumo', component: ItemConsumoListComponent},
+     { path: 'itens-consumo/:itemConsumoId', component: ItemConsumoDetailsComponent},
+     { path: 'itens-pedido', component: ItemPedidoListComponent},
+     { path: 'pedidos', component: PedidoListComponent},
+     { path: 'pedidos/new', component: PedidoCreateUpdateComponent},
+     { path: 'pedidos/detail', component: PedidoDetaiComponent},
+     { path: 'adicionar-item-pedido/:pedidoId', component: AdicionarItemPedidoComponent}
 ];

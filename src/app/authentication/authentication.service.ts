@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, input, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationRequestModel } from './models/registration-request.Model';
@@ -13,6 +13,7 @@ import { RegistrationResponseModel } from './models/registration-response.model'
 export class AuthenticationService {
 
   urlApi = `${environment.apiUrl}/auth`;
+  Accountlogin = signal<boolean>(true);
 
   constructor(private http: HttpClient){}
 

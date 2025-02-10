@@ -30,11 +30,6 @@ export class ItemPedidoListComponent implements OnInit{
   openCreateItemPedidoModel() {
 		const modalRef = this.modalService.open(ItemPedidoCreateUpdateComponent, { size: 'lg' });
     modalRef.componentInstance.pedido = this.pedido();
-	} 
-
-  openUpdateItemPedidoModal(itemPedido: ItemPedidoModel) {
-		const modalRef = this.modalService.open(ItemPedidoCreateUpdateComponent, { size: 'lg' });
-    modalRef.componentInstance.itemPedido = itemPedido;
 	}
 
   openDeleteItemPedidoModal(itemPedido: ItemPedidoModel) {

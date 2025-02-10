@@ -86,23 +86,27 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
   }
 
   onSave() {
-    this.itemPedido = this.itemPedidoForm.value;
-    if (this.itemPedido?.id != null) {
-      this.itemPedidoService.updateItemPedido(this.itemPedido).subscribe((itemPedidoResult) => {
-        this.pedidoService.calcularTotalPedido(itemPedidoResult.pedido?.id!);
-        this.itemPedidoService.getItensPedido(itemPedidoResult.pedido?.id!);
-        this.cancel();
-      });
-    } 
-    else {
-      this.itemPedidoService.saveItemPedido(this.itemPedido!).subscribe(itemPedidoResult => {      
+
+    this.pedidoService.itemsPedido.push( this.itemPedidoForm.value );
+    console.log( this.pedidoService.itemsPedido )
+
+    // this.itemPedido = this.itemPedidoForm.value;
+    // if (this.itemPedido?.id != null) {
+    //   this.itemPedidoService.updateItemPedido(this.itemPedido).subscribe((itemPedidoResult) => {
+    //     this.pedidoService.calcularTotalPedido(itemPedidoResult.pedido?.id!);
+    //     this.itemPedidoService.getItensPedido(itemPedidoResult.pedido?.id!);
+    //     this.cancel();
+    //   });
+    // } 
+    // else {
+    //   this.itemPedidoService.saveItemPedido(this.itemPedido!).subscribe(itemPedidoResult => {      
         
-        this.pedidoService.calcularTotalPedido(itemPedidoResult.pedido?.id!);
-        this.itemPedidoService.getItensPedido(itemPedidoResult.pedido?.id!);
-        this.cancel();
+    //     this.pedidoService.calcularTotalPedido(itemPedidoResult.pedido?.id!);
+    //     this.itemPedidoService.getItensPedido(itemPedidoResult.pedido?.id!);
+    //     this.cancel();
         
-      });
-    }
+    //   });
+    // }
   }
 
   calcularPreco(){

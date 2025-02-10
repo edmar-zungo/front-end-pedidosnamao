@@ -6,15 +6,8 @@ import { inject, Injectable } from '@angular/core';
 })
 export class ExposeTokenService {
 
-  http = inject(HttpClient);
-
-  exposeToken(): HttpHeaders{
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token!}`, // Adiciona o token ao cabeçalho
-    });
-    
-    return headers;
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
 }
