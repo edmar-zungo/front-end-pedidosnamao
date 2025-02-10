@@ -28,7 +28,7 @@ export class PedidoCreateUpdateComponent implements OnInit{
   mesa: MesaModel | null = null;
 
   pageNumber = 1;
-  pageItens = 5;
+  pageItens = 20;
 
   router = inject(Router);
   pedidoService = inject(PedidoService);
@@ -61,7 +61,8 @@ export class PedidoCreateUpdateComponent implements OnInit{
       valorEntrega: [0, [Validators.required]],
       totalPagar: [0, [Validators.required]],
       totalPago: [0, [Validators.required]],
-      totalTroco: [0, [Validators.required]]
+      totalTroco: [0, [Validators.required]],
+      items: [[]],
     });
   }
 
@@ -74,35 +75,19 @@ export class PedidoCreateUpdateComponent implements OnInit{
   }
 
 
-  onSave() {
-  //  this.pedido = this.pedidoForm.value;
-  //    if (this.pedido?.id != null) {
-  //      this.pedidoService.updatePedido(this.pedido).subscribe(() => {
-  //        this.pedidoService.getPedidos();
-  //        this.cancel();
-  //      });
+  save() {
+    this.pedido!.items = this.pedidoService.itemsPedido;
+     this.pedidoService.savePedido(this.pedido!).subscribe(pedidoResult => {
+      this.pedidoService.getPedidos(this.pageNumber, this.pageItens);
+       this.cancel();
+      this.router.navigate(['pedidos/detail']);
+     });
 
-  //    } else {
-  //      this.pedidoService.savePedido(this.pedido!).subscribe(pedidoResult => {
-  //       this.pedidoService.getPedidos();
-  //        this.cancel();
-  //       this.router.navigate(['pedidos/detail']);
-  //      });
-  //    }
   }
 
   openCreateItemPedidoModel(pedido: PedidoModel) {
 		const modalRef = this.modalService.open(PedidoDetaiComponent, { size: 'lg' });
     modalRef.componentInstance.pedido = pedido;
 	} 
-
-  save(){
-    this.pedidoService.savePedido().subscribe(pedidoResult => {
-      this.router.navigate(['/adicionar-item-pedido', pedidoResult.id]);
-      this.pedidoService.getPedidos(this.pageNumber, this.pageItens);
-       this.cancel();
-      
-     });
-  }
 
 }

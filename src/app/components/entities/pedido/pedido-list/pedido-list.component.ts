@@ -28,12 +28,12 @@ export class PedidoListComponent implements OnInit{
     this.pedidoService.getPedidos(this.pageNumber, this.pageItens);
   }
 
-  createPedido() {
-    this.pedidoService.savePedido().subscribe(pedidoResult => {
-      this.router.navigate(['adicionar-item-pedido/', pedidoResult.id]);
-    })
+  // createPedido() {
+  //   this.pedidoService.savePedido().subscribe(pedidoResult => {
+  //     this.router.navigate(['adicionar-item-pedido/', pedidoResult.id]);
+  //   })
    
-	}
+	// }
 
   fecharPedido(pedido: PedidoModel){
     this.pedidoService.mudarEstadoPedido(pedido).subscribe(() => {

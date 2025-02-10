@@ -1,5 +1,6 @@
 import { EstadoPedido } from "../enums/estado-pedido.enum";
 import { Estado } from "../enums/estado.enum";
+import { ItemPedidoModel } from "../item-pedido/item-pedido.model";
 import { MesaModel } from "../mesa/mesa.model";
 
 export interface PedidoModel {
@@ -19,4 +20,5 @@ export interface PedidoModel {
     totalPagar: number | null;
     totalPago: number | null;
     totalTroco: number | null;
+    items: ItemPedidoModel[] | null;
 }

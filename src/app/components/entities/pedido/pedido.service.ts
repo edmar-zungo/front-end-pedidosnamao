@@ -30,9 +30,9 @@ export class PedidoService {
     });
   }
 
-  savePedido(): Observable<PedidoModel>{
+  savePedido(pedido: PedidoModel): Observable<PedidoModel>{
     
-    return this.http.post<PedidoModel>(this.urlApi, null);
+    return this.http.post<PedidoModel>(this.urlApi, pedido);
   }
 
   getOnePedido(pedidoId: string): Observable<PedidoModel>{
@@ -57,10 +57,10 @@ export class PedidoService {
    return this.http.delete<string>(`${this.urlApi}/${pedidoId}`);
   }
 
-  createPedido() {
-    this.savePedido().subscribe(pedidoResult => {
-      this.router.navigate(['adicionar-item-pedido/', pedidoResult.id]);
-    })
+  // createPedido() {
+  //   this.savePedido().subscribe(pedidoResult => {
+  //     this.router.navigate(['adicionar-item-pedido/', pedidoResult.id]);
+  //   })
    
-	}
+	// }
 }

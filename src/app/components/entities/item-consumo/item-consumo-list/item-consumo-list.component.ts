@@ -1,26 +1,32 @@
-import { Component, OnInit, effect, inject, input, signal } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewEncapsulation, effect, inject, input, signal } from '@angular/core';
 import { ItemConsumoService } from '../item-consumo.service';
 import { RouterLink } from '@angular/router';
 import { CardapioModel } from '../../cardapio/cardapio.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { ItemConsumoCreateUpdateComponent } from '../item-consumo-create-update/item-consumo-create-update.component';
 import { ItemConsumoDetailsComponent } from '../item-consumo-details/item-consumo-details.component';
 import { ItemConsumoModel } from '../item-consumo.model';
 import { ItemPedidoService } from '../../item-pedido/item-pedido.service';
+import { PedidoService } from '../../pedido/pedido.service';
 
 @Component({
   selector: 'app-item-consumo-list',
   standalone: true,
   imports: [RouterLink],
   templateUrl: './item-consumo-list.component.html',
-  styleUrl: './item-consumo-list.component.css'
+  styleUrl: './item-consumo-list.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class ItemConsumoListComponent implements OnInit {
 
   cardapio = input<CardapioModel | null>();
 
-  modalService = inject(NgbModal)
-  itemPedidoService = inject(ItemPedidoService)
+  modalService = inject(NgbModal);
+  itemPedidoService = inject(ItemPedidoService);
+  pedidoService = inject(PedidoService);
+  offcanvasService = inject(NgbOffcanvas);
+
+  totalPedido = 0;
 
   constructor(public itemConsumoService: ItemConsumoService) {
    
@@ -96,5 +102,12 @@ export class ItemConsumoListComponent implements OnInit {
       this.itemPedidoService.openUpdateItemPedidoModal(resp);
     })
   }
+
+  openEnd(content: TemplateRef<any>) {
+		this.offcanvasService.open(content, { position: 'end' });
+    for(let item of this.pedidoService.itemsPedido){
+      this.totalPedido = this.totalPedido + item.precoItemPedido!;
+    }
+	}
 
 }

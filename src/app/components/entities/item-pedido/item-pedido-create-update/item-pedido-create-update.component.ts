@@ -88,7 +88,6 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
   onSave() {
 
     this.pedidoService.itemsPedido.push( this.itemPedidoForm.value );
-    console.log( this.pedidoService.itemsPedido )
 
     // this.itemPedido = this.itemPedidoForm.value;
     // if (this.itemPedido?.id != null) {

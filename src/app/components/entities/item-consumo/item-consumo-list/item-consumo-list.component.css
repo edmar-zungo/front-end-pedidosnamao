@@ -1,4 +1,4 @@
-.tipo-item{
+.tipo-item {
      padding: .6rem;
      background-color: #ffa42c;
      color: #ffffff;
@@ -7,7 +7,7 @@
      border-radius: .5rem;
 }
 
-a{
+a {
      list-style: none;
      text-decoration: none;
      color: #000000;
@@ -16,19 +16,45 @@ a{
      cursor: pointer;
 }
 
-.badge-style{
+.badge-style {
      background-color: #ffa42c;
      padding: .6rem;
 }
 
-.sub-title{
+.sub-title {
      color: #ffa42c;
      font-weight: bolder;
 }
 
-.novoItemButton{
-     
+.novoItemButton {
+
      border: 1px solid #fbfbfb;
      background-color: #ffa42c;
 }
 
+    /* Estilização do botão flutuante */
+    .floating-btn {
+     width: 60px;
+     height: 60px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+     position: relative; /* Para que o badge seja posicionado em relação ao botão */
+   }
+   /* Estilização do badge acoplado */
+   .floating-btn-badge {
+     position: absolute;
+     top: -5px;    /* Ajusta a posição vertical do badge */
+     right: -5px;  /* Ajusta a posição horizontal do badge */
+     width: 20px;
+     height: 20px;
+     background-color: #ffa42c; /* Fundo vermelho */
+     color: #fff;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 12px;
+     border: 2px solid #fff; /* Borda branca para destacar o badge */
+   }

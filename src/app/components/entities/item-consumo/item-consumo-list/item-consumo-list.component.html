@@ -1,113 +1,198 @@
 <div class="container">
-  @if(existeItens()){
-    @if(existePratosPrincipais()){
-      <div class="tipo-item mb-2">PRINCIPAIS</div>
-      <ol class="list-group list-group-numbered mb-3">
-        @for (item of itemConsumoService.itensConsumo(); track $index) {
-          @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL' && item.estadoItemConsumo === 'DISPONIVEL'){
-            <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">
-                  <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{ item.descricao }}</a>
-                </div>
-              </div>
-              <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-              <span class="btn btn-sm btn-success ms-1 rounded-circle" (click)="adicionarItem(item)"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-            </li>
-          }
-        }
-      </ol>
-    }   
-  
-     @if(existePratosEntrada()){
-      <div class="tipo-item mb-2">ENTRADAS</div>
-      <ol class="list-group list-group-numbered mb-3">
-        @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'ENTRADA' && item.estadoItemConsumo === 'DISPONIVEL'){
-        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">
-              <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{ item.descricao }}</a>
-            </div>
-          </div>
-          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-          <span class="btn btn-sm btn-success ms-1 rounded-circle" (click)="adicionarItem(item)"><i class="fa fa-plus" aria-hidden="true"></i></span>
-        </li>
-        }
-        }
-      </ol>
-     }
-  
-  
-     @if(existePratosSobremesa()){
-      <div class="tipo-item mb-2">SOBRE MESAS</div>
-      <ol class="list-group list-group-numbered mb-3">
-        @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'SOBRE_MESA' && item.estadoItemConsumo === 'DISPONIVEL'){
-        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">
-              <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{ item.descricao }}</a>
-            </div>
-          </div>
-          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-          <span class="btn btn-sm btn-success ms-1 rounded-circle" (click)="adicionarItem(item)"><i class="fa fa-plus" aria-hidden="true"></i></span>
-        </li>
-        }
-        }
-      </ol>
-     }
-  
-     @if(cardapioUnico()){
-      <div class="sub-title text-center mb-3 fs-4">
-        BEBIDAS
+  @if(existeItens()){ @if(existePratosPrincipais()){
+  <div class="tipo-item mb-2">PRINCIPAIS</div>
+  <ol class="list-group list-group-numbered mb-3">
+    @for (item of itemConsumoService.itensConsumo(); track $index) {
+    @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'PRINCIPAL' &&
+    item.estadoItemConsumo === 'DISPONIVEL'){
+    <li
+      class="d-flex justify-content-between align-items-start border border-0 mb-2"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">
+          <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{
+            item.descricao
+          }}</a>
+        </div>
       </div>
-     }
-  
-     @if(existeBebidaAlcoolica()){
-      <div class="tipo-item mb-2">BEBIDAS ÁLCOOLICAS</div>
-      <ol class="list-group list-group-numbered mb-3">
-        @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'ALCOOLICA' && item.estadoItemConsumo === 'DISPONIVEL'){
-        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">
-              <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{ item.descricao }}</a>
-            </div>
-          </div>
-          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-          <span class="btn btn-sm btn-success ms-1 rounded-circle" (click)="adicionarItem(item)"><i class="fa fa-plus" aria-hidden="true"></i></span>
-        </li>
-        }
-        }
-      </ol>
-     }
-  
-  
-     @if(existeBebidaNaoAlcoolica()){
-      <div class="tipo-item mb-2">REFRIGERANTES E SUMOS</div>
-      <ol class="list-group list-group-numbered mb-3">
-        @for (item of itemConsumoService.itensConsumo(); track $index) {
-        @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'NAO_ALCOOLICA' && item.estadoItemConsumo === 'DISPONIVEL'){
-        <li class=" d-flex justify-content-between align-items-start border border-0 mb-2">
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">
-              <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{ item.descricao }}</a>
-            </div>
-          </div>
-          <span class="badge rounded-pill fs-6 badge-style">{{ item.preco }} Kz</span>
-          <span class="btn btn-sm btn-success ms-1 rounded-circle" (click)="adicionarItem(item)"><i class="fa fa-plus" aria-hidden="true"></i></span>
-        </li>
-        }
-        }
-      </ol>
-     }
-  } @else {
-    <div class="alert alert-warning" role="alert"> Nenhum item adicionado. Adicione um novo item clicando no botão a baixo! "+ Novo item" </div>
+      <span class="badge rounded-pill fs-6 badge-style"
+        >{{ item.preco }} Kz</span
+      >
+      <span
+        class="btn btn-sm btn-danger ms-1 rounded-circle"
+        (click)="adicionarItem(item)"
+        ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+      ></span>
+    </li>
+    } }
+  </ol>
+  } @if(existePratosEntrada()){
+  <div class="tipo-item mb-2">ENTRADAS</div>
+  <ol class="list-group list-group-numbered mb-3">
+    @for (item of itemConsumoService.itensConsumo(); track $index) {
+    @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'ENTRADA' &&
+    item.estadoItemConsumo === 'DISPONIVEL'){
+    <li
+      class="d-flex justify-content-between align-items-start border border-0 mb-2"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">
+          <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{
+            item.descricao
+          }}</a>
+        </div>
+      </div>
+      <span class="badge rounded-pill fs-6 badge-style"
+        >{{ item.preco }} Kz</span
+      >
+      <span
+        class="btn btn-sm btn-danger ms-1 rounded-circle"
+        (click)="adicionarItem(item)"
+        ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+      ></span>
+    </li>
+    } }
+  </ol>
+  } @if(existePratosSobremesa()){
+  <div class="tipo-item mb-2">SOBRE MESAS</div>
+  <ol class="list-group list-group-numbered mb-3">
+    @for (item of itemConsumoService.itensConsumo(); track $index) {
+    @if(item.tipoItemConsumo === 'PRATO' && item.tipoPrato === 'SOBRE_MESA' &&
+    item.estadoItemConsumo === 'DISPONIVEL'){
+    <li
+      class="d-flex justify-content-between align-items-start border border-0 mb-2"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">
+          <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{
+            item.descricao
+          }}</a>
+        </div>
+      </div>
+      <span class="badge rounded-pill fs-6 badge-style"
+        >{{ item.preco }} Kz</span
+      >
+      <span
+        class="btn btn-sm btn-danger ms-1 rounded-circle"
+        (click)="adicionarItem(item)"
+        ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+      ></span>
+    </li>
+    } }
+  </ol>
+  } @if(cardapioUnico()){
+  <div class="sub-title text-center mb-3 fs-4">BEBIDAS</div>
+  } @if(existeBebidaAlcoolica()){
+  <div class="tipo-item mb-2">BEBIDAS ÁLCOOLICAS</div>
+  <ol class="list-group list-group-numbered mb-3">
+    @for (item of itemConsumoService.itensConsumo(); track $index) {
+    @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'ALCOOLICA' &&
+    item.estadoItemConsumo === 'DISPONIVEL'){
+    <li
+      class="d-flex justify-content-between align-items-start border border-0 mb-2"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">
+          <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{
+            item.descricao
+          }}</a>
+        </div>
+      </div>
+      <span class="badge rounded-pill fs-6 badge-style"
+        >{{ item.preco }} Kz</span
+      >
+      <span
+        class="btn btn-sm btn-danger ms-1 rounded-circle"
+        (click)="adicionarItem(item)"
+        ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+      ></span>
+    </li>
+    } }
+  </ol>
+  } @if(existeBebidaNaoAlcoolica()){
+  <div class="tipo-item mb-2">REFRIGERANTES E SUMOS</div>
+  <ol class="list-group list-group-numbered mb-3">
+    @for (item of itemConsumoService.itensConsumo(); track $index) {
+    @if(item.tipoItemConsumo === 'BEBIDA' && item.tipoBebida === 'NAO_ALCOOLICA'
+    && item.estadoItemConsumo === 'DISPONIVEL'){
+    <li
+      class="d-flex justify-content-between align-items-start border border-0 mb-2"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">
+          <a class="link-dark" (click)="openDetailItemConsumoModel(item!)">{{
+            item.descricao
+          }}</a>
+        </div>
+      </div>
+      <span class="badge rounded-pill fs-6 badge-style"
+        >{{ item.preco }} Kz</span
+      >
+      <span
+        class="btn btn-sm btn-danger ms-1 rounded-circle"
+        (click)="adicionarItem(item)"
+        ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+      ></span>
+    </li>
+    } }
+  </ol>
+  } } @else {
+  <div class="alert alert-warning" role="alert">
+    Nenhum item adicionado. Adicione um novo item clicando no botão a baixo! "+
+    Novo item"
+  </div>
   }
 
-
   <div class="d-flex justify-content-end mt-4">
-    <button type="button" class="novoItemButton py-2 px-3 rounded-2 text-white fw-semibold" (click)="openCreateItemConsumoModel()"> <i class="fa fa-plus" aria-hidden="true"></i> Novo item</button>
+    <button
+      type="button"
+      class="novoItemButton py-2 px-3 rounded-2 text-white fw-semibold"
+      (click)="openCreateItemConsumoModel()"
+    >
+      <i class="fa fa-plus" aria-hidden="true"></i> Novo item
+    </button>
   </div>
+
+  @if(pedidoService.itemsPedido.length > 0){
+  <!-- Botão Flutuante com Badge -->
+  <button
+    type="button"
+    class="btn btn-danger position-fixed floating-btn"
+    style="bottom: 20px; right: 140px"
+    (click)="openEnd(content)"
+  >
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    <span class="floating-btn-badge">
+      {{ pedidoService.itemsPedido.length }}
+    </span>
+  </button>
+  }
 </div>
+
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title">Resumo do pedido</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+    <ol class="list-group list-group-numbered">
+		@for(item of pedidoService.itemsPedido ; track $index){
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-1 me-auto">
+          <div class="fw-bold">{{item.descricao}}</div>
+          <span class="text-light-emphasis fw-semibold">{{item.precoItemPedido}} Kz</span>
+        </div>
+        <span class="badge text-bg-primary rounded-pill">{{ item.quantidadeItemConsumo }}</span>
+      </li>
+    }
+  </ol>
+
+  <div class="text-end mt-3">
+   <p class="text-light-emphasis fw-bolder fs-3">Total a Pagar:  {{ totalPedido }}</p>
+  </div>
+
+		<div class="text-end mt-3">
+			<button type="button" class="btn btn-outline-secondary" (click)="offcanvas.close('Close click')">Close</button>
+		</div>
+	</div>
+</ng-template>
