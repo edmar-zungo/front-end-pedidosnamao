@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, NgModule, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -19,6 +19,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
   selector: 'app-item-pedido-create-update',
   standalone: true,
   imports: [ReactiveFormsModule, NgxCurrencyDirective],
+  providers: [NgModule],
   templateUrl: './item-pedido-create-update.component.html',
   styleUrl: './item-pedido-create-update.component.css',
 })
@@ -87,25 +88,18 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
 
   onSave() {
 
-    this.pedidoService.itemsPedido.push( this.itemPedidoForm.value );
+    const index = this.pedidoService.itemsPedido.indexOf(this.itemPedido!);
 
-    // this.itemPedido = this.itemPedidoForm.value;
-    // if (this.itemPedido?.id != null) {
-    //   this.itemPedidoService.updateItemPedido(this.itemPedido).subscribe((itemPedidoResult) => {
-    //     this.pedidoService.calcularTotalPedido(itemPedidoResult.pedido?.id!);
-    //     this.itemPedidoService.getItensPedido(itemPedidoResult.pedido?.id!);
-    //     this.cancel();
-    //   });
-    // } 
-    // else {
-    //   this.itemPedidoService.saveItemPedido(this.itemPedido!).subscribe(itemPedidoResult => {      
-        
-    //     this.pedidoService.calcularTotalPedido(itemPedidoResult.pedido?.id!);
-    //     this.itemPedidoService.getItensPedido(itemPedidoResult.pedido?.id!);
-    //     this.cancel();
-        
-    //   });
-    // }
+    if (index > -1) {
+      this.pedidoService.itemsPedido.splice(index, 1, this.itemPedido!);
+    } else{
+      this.pedidoService.itemsPedido.push( this.itemPedidoForm.value );
+    }
+
+    this.itemPedidoService.actualizarTotal(this.pedidoService.itemsPedido);
+
+    
+    this.cancel();
   }
 
   calcularPreco(){

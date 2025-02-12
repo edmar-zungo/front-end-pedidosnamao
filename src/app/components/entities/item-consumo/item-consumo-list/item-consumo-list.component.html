@@ -16,7 +16,7 @@
         </div>
       </div>
       <span class="badge rounded-pill fs-6 badge-style"
-        >{{ item.preco }} Kz</span
+        >{{ item.preco | currency:'Kz':'symbol':'1.2-2':'fr-FR'}}</span
       >
       <span
         class="btn btn-sm btn-danger ms-1 rounded-circle"
@@ -43,7 +43,7 @@
         </div>
       </div>
       <span class="badge rounded-pill fs-6 badge-style"
-        >{{ item.preco }} Kz</span
+        >{{ item.preco | currency:'Kz':'symbol':'1.2-2':'fr-FR' }}</span
       >
       <span
         class="btn btn-sm btn-danger ms-1 rounded-circle"
@@ -70,7 +70,7 @@
         </div>
       </div>
       <span class="badge rounded-pill fs-6 badge-style"
-        >{{ item.preco }} Kz</span
+        >{{ item.preco | currency:'Kz':'symbol':'1.2-2':'fr-FR' }}</span
       >
       <span
         class="btn btn-sm btn-danger ms-1 rounded-circle"
@@ -99,7 +99,7 @@
         </div>
       </div>
       <span class="badge rounded-pill fs-6 badge-style"
-        >{{ item.preco }} Kz</span
+        >{{ item.preco | currency:'Kz':'symbol':'1.2-2':'fr-FR' }}</span
       >
       <span
         class="btn btn-sm btn-danger ms-1 rounded-circle"
@@ -126,7 +126,7 @@
         </div>
       </div>
       <span class="badge rounded-pill fs-6 badge-style"
-        >{{ item.preco }} Kz</span
+        >{{ item.preco | currency:'Kz':'symbol':'1.2-2':'fr-FR' }}</span
       >
       <span
         class="btn btn-sm btn-danger ms-1 rounded-circle"
@@ -169,30 +169,58 @@
   }
 </div>
 
+
 <ng-template #content let-offcanvas>
-	<div class="offcanvas-header">
-		<h4 class="offcanvas-title">Resumo do pedido</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
-	</div>
-	<div class="offcanvas-body">
-    <ol class="list-group list-group-numbered">
-		@for(item of pedidoService.itemsPedido ; track $index){
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-1 me-auto">
-          <div class="fw-bold">{{item.descricao}}</div>
-          <span class="text-light-emphasis fw-semibold">{{item.precoItemPedido}} Kz</span>
-        </div>
-        <span class="badge text-bg-primary rounded-pill">{{ item.quantidadeItemConsumo }}</span>
-      </li>
-    }
-  </ol>
-
-  <div class="text-end mt-3">
-   <p class="text-light-emphasis fw-bolder fs-3">Total a Pagar:  {{ totalPedido }}</p>
+  <div class="offcanvas-header border-0 pb-2">
+    <h4 class="offcanvas-title fw-bold text-dark">Resumo do Pedido</h4>
+    <button 
+      type="button" 
+      class="btn-close" 
+      aria-label="Close" 
+      (click)="offcanvas.dismiss('Cross click')">
+    </button>
   </div>
+  <div class="offcanvas-body custom-offcanvas-body">
+    <ol class="list-group list-group-flush">
+      @for(item of pedidoService.itemsPedido; track $index) {
+        <li class="list-group-item custom-list-item" (click)="editeItemPedido(item)">
+          <!-- Primeira linha: descrição e badge -->
+          <div class="row">
+            <div class="col-8">
+              <div class="fw-bold text-dark">{{ item.descricao }}</div>
+            </div>
+            <div class="col-4 text-end">
+              <button 
+                type="button" 
+                class="btn btn-md pe-1" 
+                (click)="removeItem(item)">
+                <i class="fa fa-square-minus fs-4 text-danger"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Segunda linha: preço e botão de eliminar -->
+          <div class="row align-items-center mt-2 mb-2">
+            <div class="col-8">
+              <span class="text-muted">{{ item.precoItemPedido | currency:'Kz':'symbol':'1.2-2':'fr-FR'}}</span>
+            </div>
+            <div class="col-4 text-end">
+              <span class="badge rounded-pill custom-badge bg-danger">{{ item.quantidadeItemConsumo }}</span>
+            </div>
+          </div>
+        </li>
+      }
+    </ol>
 
-		<div class="text-end mt-3">
-			<button type="button" class="btn btn-outline-secondary" (click)="offcanvas.close('Close click')">Close</button>
-		</div>
-	</div>
+    <div class="d-flex justify-content-between align-items-center mt-4 px-2">
+      <p class="fw-bold fs-4 mb-0">Total a Pagar:</p>
+      <p class="fw-bold fs-4 mb-0 text-danger">{{ itemPedidoService.totalPedido() | currency:'Kz':'symbol':'1.2-2':'fr-FR'}}</p>
+    </div>
+
+    <div class="text-end mt-3 px-1">
+      <button type="button" class="btn btn-custom btn-danger" (click)="offcanvas.close('Close click')">Fechar</button>
+    </div>
+  </div>
 </ng-template>
+
+
+

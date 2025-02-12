@@ -8,11 +8,13 @@ import { ItemConsumoDetailsComponent } from '../item-consumo-details/item-consum
 import { ItemConsumoModel } from '../item-consumo.model';
 import { ItemPedidoService } from '../../item-pedido/item-pedido.service';
 import { PedidoService } from '../../pedido/pedido.service';
+import { ItemPedidoModel } from '../../item-pedido/item-pedido.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-item-consumo-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './item-consumo-list.component.html',
   styleUrl: './item-consumo-list.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -25,8 +27,6 @@ export class ItemConsumoListComponent implements OnInit {
   itemPedidoService = inject(ItemPedidoService);
   pedidoService = inject(PedidoService);
   offcanvasService = inject(NgbOffcanvas);
-
-  totalPedido = 0;
 
   constructor(public itemConsumoService: ItemConsumoService) {
    
@@ -90,7 +90,8 @@ export class ItemConsumoListComponent implements OnInit {
   openCreateItemConsumoModel() {
 		const modalRef = this.modalService.open(ItemConsumoCreateUpdateComponent, { size: 'lg' });
     modalRef.componentInstance.cardapio = this.cardapio();
-	}  
+	}
+
   openDetailItemConsumoModel(itemConsumo: ItemConsumoModel) {
 		const modalRef = this.modalService.open(ItemConsumoDetailsComponent, { size: 'lg' });
     modalRef.componentInstance.itemConsumo = itemConsumo;
@@ -103,11 +104,23 @@ export class ItemConsumoListComponent implements OnInit {
     })
   }
 
+  editeItemPedido(item: ItemPedidoModel){
+    this.itemPedidoService.openUpdateItemPedidoModal(item);
+  }
+
   openEnd(content: TemplateRef<any>) {
 		this.offcanvasService.open(content, { position: 'end' });
-    for(let item of this.pedidoService.itemsPedido){
-      this.totalPedido = this.totalPedido + item.precoItemPedido!;
-    }
+    this.itemPedidoService.actualizarTotal(this.pedidoService.itemsPedido);
 	}
+
+  removeItem(item: any): void {
+    const index = this.pedidoService.itemsPedido.indexOf(item);
+    if (index > -1) {
+      this.pedidoService.itemsPedido.splice(index, 1);
+      this.itemPedidoService.actualizarTotal(this.pedidoService.itemsPedido);
+    }
+  }
+
+  
 
 }

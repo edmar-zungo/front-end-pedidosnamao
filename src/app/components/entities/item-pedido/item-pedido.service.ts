@@ -12,6 +12,7 @@ import { ItemConsumoModel } from '../item-consumo/item-consumo.model';
 })
 export class ItemPedidoService {
   urlApi = `${environment.apiUrl}/itens-pedido`;
+  totalPedido = signal<number>(0);
   
   itensPedido = signal<ItemPedidoModel[]>([]); 
 
@@ -48,5 +49,12 @@ export class ItemPedidoService {
 
   adicionarItemPedido(itemConsumo: ItemConsumoModel): Observable<ItemPedidoModel>{
     return this.http.post<ItemPedidoModel>(`${this.urlApi}/adicionar-item`, itemConsumo);
+  }
+
+  actualizarTotal(itens: ItemPedidoModel[]): void{
+    this.totalPedido.set(0);
+    for(let item of itens){
+      this.totalPedido.set(this.totalPedido() + item.precoItemPedido!);
+    }
   }
 }
