@@ -121,6 +121,9 @@ export class ItemConsumoListComponent implements OnInit {
     }
   }
 
-  
+  close(): void{
+    this.pedidoService.itemsPedido = [];
+    this.offcanvasService.dismiss();
+  }
 
 }

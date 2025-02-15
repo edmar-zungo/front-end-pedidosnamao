@@ -183,10 +183,10 @@
   <div class="offcanvas-body custom-offcanvas-body">
     <ol class="list-group list-group-flush">
       @for(item of pedidoService.itemsPedido; track $index) {
-        <li class="list-group-item custom-list-item" (click)="editeItemPedido(item)">
+        <li class="list-group-item custom-list-item">
           <!-- Primeira linha: descrição e badge -->
           <div class="row">
-            <div class="col-8">
+            <div class="col-8" (click)="editeItemPedido(item)">
               <div class="fw-bold text-dark">{{ item.descricao }}</div>
             </div>
             <div class="col-4 text-end">
@@ -217,7 +217,7 @@
     </div>
 
     <div class="text-end mt-3 px-1">
-      <button type="button" class="btn btn-custom btn-danger" (click)="offcanvas.close('Close click')">Fechar</button>
+      <button type="button" class="btn btn-custom btn-danger" (click)="close()"> <i class="fa fa-check" aria-hidden="true"></i>  Finalizar pedido</button>
     </div>
   </div>
 </ng-template>

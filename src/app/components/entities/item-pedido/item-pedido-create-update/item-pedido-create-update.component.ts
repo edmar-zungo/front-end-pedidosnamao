@@ -88,18 +88,19 @@ export class ItemPedidoCreateUpdateComponent implements OnInit {
 
   onSave() {
 
-    const index = this.pedidoService.itemsPedido.indexOf(this.itemPedido!);
+    var itemResult = this.pedidoService.itemsPedido.find(x => x.itemConsumo?.id === this.itemPedido?.itemConsumo?.id);
+    if(itemResult){
+      itemResult.quantidadeItemConsumo = this.itemPedido?.quantidadeItemConsumo!
+      itemResult.precoItemPedido = this.itemPedido?.precoItemPedido!
 
-    if (index > -1) {
-      this.pedidoService.itemsPedido.splice(index, 1, this.itemPedido!);
-    } else{
-      this.pedidoService.itemsPedido.push( this.itemPedidoForm.value );
-    }
+     } else{
+       this.pedidoService.itemsPedido.push( this.itemPedidoForm.value );
+     }
 
-    this.itemPedidoService.actualizarTotal(this.pedidoService.itemsPedido);
+     this.itemPedidoService.actualizarTotal(this.pedidoService.itemsPedido);
 
     
-    this.cancel();
+     this.cancel();
   }
 
   calcularPreco(){
